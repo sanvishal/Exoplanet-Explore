@@ -1,0 +1,12 @@
+@import url("https://fonts.googleapis.com/css?family=Lato");
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
+
+text {
+	font-family: "lato";
+}
+
+#planet-name {
+	font-weight: 1000;
+	fill: #d80833;
+	font-family: "Montserrat";
+}

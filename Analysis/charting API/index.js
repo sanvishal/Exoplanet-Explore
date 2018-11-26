@@ -41,19 +41,26 @@ function Controller(data) {
 }
 
 function DrawChart(type, axes) {
+	/*
+		params:-
+			type(String): bar, line, sector, pie
+			axes(Array): Refer legend()
+		Draws a Chart/graph in a canvas element
+	*/
+
 	let barChart = new Chart(chart, {
 		type: type,
 		data: {
 			labels: axes[0],
 			datasets: [
 				{
-					label: "Temperature",
+					label: "Label1",
 					data: axes[1],
 					borderColor: "#333333",
 					hoverBorderWidth: 10
 				},
 				{
-					label: "Stellar radius",
+					label: "Label2",
 					data: axes[2],
 					borderColor: "#ffffff",
 					hoverBorderWidth: 10
