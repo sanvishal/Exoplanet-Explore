@@ -1,6 +1,8 @@
 var margin = { top: 20, right: 20, bottom: 50, left: 40 },
-	width = window.innerWidth - margin.left - margin.right,
-	height = 500 - margin.top - margin.bottom;
+	width = 1150 - margin.left - margin.right,
+	height = 450 - margin.top - margin.bottom;
+
+var formatDecimalComma = d3.format(",.2f");
 
 const xsAnn = d3
 	.scaleLinear()
@@ -63,7 +65,7 @@ let planet_name = info_group
 	.append("text")
 	.attr("id", "planet-name")
 	.attr("class", "info-text")
-	.attr("y", 150)
+	.attr("y", 140)
 	.attr("x", 0)
 	.style("opacity", 1)
 	.text("That's Kepler-9b")
@@ -73,8 +75,16 @@ let planet_temp = info_group
 	.append("text")
 	.attr("id", "planet-temp")
 	.attr("class", "info-text")
-	.attr("y", 162)
-	.attr("dy", "0.35em")
+	.attr("y", 160)
+	.text("with 3000°C temperature");
+
+let planet_info = info_group
+	.append("text")
+	.attr("id", "planet-info")
+	.attr("class", "info-text")
+	.attr("y", 175)
+	.attr("fill", "grey")
+	.attr("font-size", 10)
 	.text("with 3000°C temperature");
 
 var hover = svg
@@ -102,18 +112,13 @@ function clamp(num, min, max) {
 }
 
 d3.csv("./_data/planets.csv", function(error, data) {
-	max = -100000;
 	var smallest = data[2771];
 	data = data.slice(0, 200);
 	data.push(smallest);
-	console.log(data);
 	data.forEach(function(d) {
 		d["RadiusJpt"] = +d["RadiusJpt"];
-		d["PlanetaryMassJpt"] = +d["PlanetaryMassJpt"];
+		d["PlanetaryMassJpt"] = Math.floor(+d["PlanetaryMassJpt"]);
 		d["SurfaceTempK"] = +d["SurfaceTempK"];
-		if (max < +d["SurfaceTempK"]) {
-			max = +d["SurfaceTempK"];
-		}
 	});
 	//console.log(max);
 	//console.log(data);
@@ -134,8 +139,10 @@ d3.csv("./_data/planets.csv", function(error, data) {
 	yaxis
 		.append("text")
 		.attr("y", 0)
-		.attr("x", 50)
-		.text("Planetary Mass(jpt)");
+		.attr("x", 75)
+		.text("Planetary Mass(jpt)")
+		.attr("font-size", 12)
+		.attr("font-weight", "bold");
 
 	xaxis
 		.append("text")
@@ -143,7 +150,27 @@ d3.csv("./_data/planets.csv", function(error, data) {
 		.attr("x", width / 2)
 		.attr("y", 30)
 		.style("text-anchor", "middle")
-		.text("Planetary Radius(jpt)");
+		.text("Planetary Radius(jpt)")
+		.attr("font-size", 12)
+		.attr("font-weight", "bold");
+
+	xaxis
+		.append("text")
+		.attr("class", "chart-xaxis-info")
+		.attr("x", 0)
+		.attr("y", 30)
+		.attr("text-anchor", "start")
+		.text("Smaller Planets")
+		.attr("font-size", 12);
+
+	xaxis
+		.append("text")
+		.attr("class", "chart-xaxis-info")
+		.attr("y", 30)
+		.attr("x", width)
+		.attr("text-anchor", "end")
+		.text("Bigger Planets")
+		.attr("font-size", 12);
 
 	d3.selectAll(".y-axis")
 		.select("path")
@@ -196,7 +223,19 @@ d3.csv("./_data/planets.csv", function(error, data) {
 			planet_temp.text(
 				d.SurfaceTempK === 0
 					? "Temperature data not Avialable"
-					: "with " + (d.SurfaceTempK - 273.15) + "°C Surface Temperature"
+					: "with " +
+							Math.round((d.SurfaceTempK - 273.15) * 100) / 100 +
+							"°C Surface Temperature"
+			);
+			planet_info.text(
+				"Mass: " +
+					(+d["PlanetaryMassJpt"] === 0
+						? "data not avialable"
+						: formatDecimalComma(1.898e27 * +d["PlanetaryMassJpt"])) +
+					"\u00A0\u00A0\u00A0\u00A0Radius: " +
+					(+d["RadiusJpt"] === 0
+						? "data not avialable"
+						: formatDecimalComma(69911 * +d["RadiusJpt"]))
 			);
 			var mx = d3.select(this).attr("cx"),
 				my = d3.select(this).attr("cy"),
@@ -239,15 +278,35 @@ const annotationData = [
 				" 6 times jupier's radius(about 419466km)",
 			wrap: 300
 		},
-		data: { radius: 6, mass: 17.5 },
+		data: { radius: 6, mass: Math.floor(17.5) },
 		type: d3.annotationCalloutCircle,
-		dy: -50,
+		dy: 50,
 		dx: -100,
 		subject: {
 			radius: 45,
 			radiusPadding: 5
 		}
 	},
+	{
+		className: "Heaviest",
+		note: {
+			title: "The Heaviest",
+			label:
+				"2M 2206-20 b has mass about 30 times that of Jupiter, which is about 5.6961e28kg",
+			wrap: 200
+		},
+		data: { radius: 1.3, mass: 30 },
+		type: d3.annotationCalloutCircle,
+		dy: 50,
+		dx: 150,
+		subject: {
+			radius: 10,
+			radiusPadding: 5
+		}
+	}
+];
+
+const annotationDataCustom = [
 	{
 		className: "smallest",
 		note: {
@@ -258,15 +317,23 @@ const annotationData = [
 			wrap: 200
 		},
 		data: { radius: 0.027, mass: 0.00875 },
-		type: d3.annotationCalloutCircle,
-		dy: -50,
-		dx: 0,
+		dy: -100,
+		dx: 30,
 		subject: {
 			radius: 10,
 			radiusPadding: 5
 		}
 	}
 ];
+
+const type = d3.annotationCustomType(d3.annotationCalloutCircle, {
+	className: "custom",
+	connector: { type: "elbow" },
+	note: {
+		lineType: "horizontal",
+		align: "middle"
+	}
+});
 
 const makeAnnotations = d3
 	.annotation()
@@ -276,7 +343,77 @@ const makeAnnotations = d3
 	})
 	.annotations(annotationData);
 
+const makeAnnotationsCustom = d3
+	.annotation()
+	.type(type)
+	.accessors({
+		x: d => xsAnn(d.radius),
+		y: d => ysAnn(d.mass)
+	})
+	.annotations(annotationDataCustom);
+
 svg
 	.append("g")
 	.attr("class", "annotation-group")
 	.call(makeAnnotations);
+
+svg
+	.append("g")
+	.attr("class", "annotation-group")
+	.call(makeAnnotationsCustom);
+
+var defs = d3.selectAll("defs");
+
+var gradientLegend = svg
+	.append("g")
+	.attr("class", "legend-temp")
+	.attr("transform", "translate(" + (width - 150) + ", " + 10 + ")");
+
+var gradient = defs
+	.append("linearGradient")
+	.attr("id", "svgGradient")
+	.attr("x1", "0%")
+	.attr("x2", "100%")
+	.attr("y1", "0%")
+	.attr("y2", "0%");
+
+gradient
+	.append("stop")
+	.attr("class", "start")
+	.attr("offset", "0%")
+	.attr("stop-color", "#007AFF")
+	.attr("stop-opacity", 1);
+
+gradient
+	.append("stop")
+	.attr("class", "end")
+	.attr("offset", "100%")
+	.attr("stop-color", "#d80833")
+	.attr("stop-opacity", 1);
+
+var gradientLine = gradientLegend
+	.append("rect")
+	.attr("x", 10)
+	.attr("y", 10)
+	.attr("width", 100)
+	.attr("height", 10)
+	.attr("fill", "url(#svgGradient)");
+
+gradientLegend
+	.selectAll(".gradient-legend-text")
+	.data(["0°C", "3000°C"])
+	.enter()
+	.append("text")
+	.attr("class", "gradient-legend-text")
+	.attr("x", (d, i) => (i === 0 ? 15 : gradientLine.attr("width")))
+	.attr("y", 35)
+	.style("text-anchor", "middle")
+	.attr("font-size", 10)
+	.text(d => d);
+
+window.onload = function() {
+	d3.selectAll(".annotation-note-label").attr("fill", "grey");
+	d3.selectAll(".annotation-group")
+		.selectAll("path")
+		.attr("stroke", "grey");
+};

@@ -1,12 +1,71 @@
 @import url("https://fonts.googleapis.com/css?family=Lato");
+@import url("https://fonts.googleapis.com/css?family=Lato:700");
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
+@import url("https://fonts.googleapis.com/css?family=PT+Sans");
+@import url("https://fonts.googleapis.com/css?family=Josefin+Sans");
+
+body {
+	color: #333333;
+}
+
+.graph-container {
+	text-align: center;
+}
 
 text {
 	font-family: "lato";
+}
+
+.note {
+	font-family: "Josefin Sans", sans-serif;
 }
 
 #planet-name {
 	font-weight: 1000;
 	fill: #d80833;
 	font-family: "Montserrat";
+}
+
+.title-text {
+	font-family: "lato", sans-serif;
+}
+
+h1.main-title {
+	padding-top: 30px;
+	font-family: "lato", sans-serif;
+	font-weight: 700;
+	font-size: 50px;
+	color: #333333;
+}
+
+.subtitle {
+	color: grey;
+	font-size: 15px;
+	font-family: "Josefin Sans", sans-serif;
+}
+
+.text-body {
+	padding-left: 30px;
+}
+
+.text-body > .side-text {
+	color: #9e9e9e;
+	font-family: "Josefin Sans", sans-serif;
+}
+
+.text-body > .main-text {
+	font-size: 20px;
+}
+
+.highlight {
+	color: #de2f53;
+}
+
+.caption {
+	font-size: 10px;
+}
+
+.image > img {
+	border-radius: 5px;
+	max-width: 500px !important;
 }
