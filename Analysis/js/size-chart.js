@@ -111,7 +111,7 @@ function clamp(num, min, max) {
 	return num <= min ? min : num >= max ? max : num;
 }
 
-d3.csv("./_data/planets.csv", function(error, data) {
+d3.csv("../size-data/planets.csv", function(error, data) {
 	var smallest = data[2771];
 	data = data.slice(0, 200);
 	data.push(smallest);

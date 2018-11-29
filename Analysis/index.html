@@ -10,6 +10,16 @@
 			rel="stylesheet"
 		/>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.min.js"></script>
+		<link
+			href="https://fonts.googleapis.com/css?family=Lato"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="css/bulma.css" />
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bulma-divider@2.0.1/dist/css/bulma-divider.min.css"
+		/>
+		<link rel="stylesheet" href="css/analysis.css" />
 	</head>
 	<body>
 		<div class="header">
@@ -27,7 +37,9 @@
 				<div class="info">An Analysis report on Exoplanets</div>
 				<br />
 				<div class="button-holder">
-					<input type="button" class="button" value="The Analysis" />
+					<a href="#analysis"
+						><input type="button" class="button" value="The Analysis"
+					/></a>
 				</div>
 			</div>
 			<div class="canvas-p5">
@@ -40,13 +52,170 @@
 				<div id="vis"></div>
 			</div>
 		</main>
-		<div class="analysis">
+		<div class="analysis" id="analysis">
 			<div class="divider">
 				<div class="line"></div>
 				<div class="circle"></div>
 				<div class="line"></div>
 			</div>
+			<br /><br />
+			<div class="container columns" style="font-size: 20px;">
+				<div class="column is-2"></div>
+				<div class="column is-10">
+					<p>
+						Amongst variety of exoplants discovered till today, there are some
+						planets which are larger than our Jupiter and some tinier than our
+						Moon. So, Let's Exoplore the Largest and Smallest Exoplanets
+					</p>
+				</div>
+			</div>
+			<section class="section largest-text">
+				<div class="container">
+					<h1 class="title title-text">The Biggest</h1>
+					<h2 class="subtitle">
+						&nbsp;&nbsp;<b>HD 100546 b</b> with radius 6 times Jupiter's radius
+					</h2>
+					<div class="columns content text-body">
+						<div class="column is-2 side-text">
+							<figure class="image is-256x256">
+								<img src="img/larg.jpg" />
+								<figcaption class="caption">
+									Artist Impression of HD 100546 b
+									<a
+										target="_blank"
+										href="https://en.wikipedia.org/wiki/File:Artist%27s_impression_of_a_gas_giant_planet_forming_in_the_disc_around_the_young_star_HD_100546.jpg"
+										>(src)</a
+									>
+								</figcaption>
+							</figure>
+							<br />
+							<br />
+							<br />
+							A <span class="highlight">protoplanet</span> is like an embryo for
+							planets. It is a stage when the planet forms within the
+							protoplanetary disc of the host star.
+						</div>
+						<div class="column is-10 main-text">
+							<p>
+								<b>How "big" is a planet?</b> There are two ways to come at the
+								question, depending on how the word "big" is defined. If you
+								think of the size of a planet in terms of mass, then there is a
+								specific but rather technical answer. Planets are defined as
+								bodies that do not generate their own energy from nuclear
+								fusion. Any planet more than about 13 times the mass of Jupiter
+								(about, 4000 Earth masses) generates enough heat and pressure in
+								its core to trigger limited fusion reactions of deuterium, a
+								heavy isotope of hydrogen. At that point, the object is
+								considered a brown dwarf instead of a planet.
+							</p>
+							<br />
+							<p>
+								Analyzing about <span class="highlight">3585</span> exoplanets,
+								it is found that the planet HD 100546 b is the largest of all
+								having radius 6 times the radius of Jupiter(about
+								<span class="highlight">419466km</span>). As discussed above,
+								this planet's size puts it near the border between a huge planet
+								and a brown dwarf. Whilst being a huge planet it is also has
+								>15Mj mass. The whole HD 100546 b is still very
+								<span class="highlight">young protoplanet</span>. The host star
+								HD 100546 still has its protoplanetary disc bright and full of
+								fumes. So, it is a new entry to the confirmed exoplanet family
+								in 2013.
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
+			<div class="graph-container">
+				<svg>
+					<defs>
+						<filter
+							id="glow"
+							filterUnits="objectBoundingBox"
+							x="-50%"
+							y="-50%"
+							width="200%"
+							height="200%"
+						>
+							<feGaussianBlur stdDeviation="1.5" result="coloredBlur" />
+							<feMerge>
+								<feMergeNode in="coloredBlur" />
+								<feMergeNode in="SourceGraphic" />
+							</feMerge>
+						</filter>
+					</defs>
+				</svg>
+			</div>
+			<div
+				class="container has-text-centered note column is-three-fifths"
+				style="color: grey;"
+			>
+				<b>Note:</b> This planet colors and sizes in this graph have been
+				saturated for better visibility. The sizes are linearly scaled to a
+				magnitude of [actual-planet-radius(jpt) * 3]
+			</div>
+			<section class="section smallest-text">
+				<div class="container">
+					<h1 class="title title-text">The Smallest</h1>
+					<h2 class="subtitle">
+						&nbsp;&nbsp;<b>Kepler-37 b</b> with radius 0.027 times Jupiter's
+						radius
+					</h2>
+					<div class="columns content text-body">
+						<div class="column is-2 side-text">
+							<figure class="image is-256x256">
+								<img src="img/smol.jpg" />
+								<figcaption class="caption">
+									Artist Impression of Kepler-37 b
+									<a
+										target="_blank"
+										href="https://en.wikipedia.org/wiki/File:Kepler-37b.jpg"
+										>(src)</a
+									>
+								</figcaption>
+							</figure>
+							<br />
+							<figure class="image is-256x256">
+								<img src="img/lyra.jpg" />
+								<figcaption class="caption">
+									Constellation <span class="highlight">Lyra</span>
+									<a
+										target="_blank"
+										href="https://utahsadventurefamily.com/find-lyra-constellation/"
+										>(src)</a
+									>
+								</figcaption>
+							</figure>
+						</div>
+						<div class="column is-10 main-text">
+							<p>
+								On 2013, Kepler mission discovered a moon sized planet.
+								Kepler-37b orbiting
+								<span class="highlight">Kepler-37 </span>system in Constellation
+								<span class="highlight">Lyra</span>.
+							</p>
+							<br />
+							<p>
+								Analyzing about <span class="highlight">3585</span> exoplanets,
+								it is found that the planet HD 100546 b is the largest of all
+								having radius 6 times the radius of Jupiter(about
+								<span class="highlight">419466km</span>). As discussed above,
+								this planet's size puts it near the border between a huge planet
+								and a brown dwarf. Whilst being a huge planet it is also has
+								>15Mj mass. The whole HD 100546 b is still very
+								<span class="highlight">young protoplanet</span>. The host star
+								HD 100546 still has its protoplanetary disc bright and full of
+								fumes. So, it is a new entry to the confirmed exoplanet family
+								in 2013.
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
 		</div>
 		<script src="js/sketch.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.6.0/d3.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-annotation/2.3.1/d3-annotation.min.js"></script>
+		<script src="js/size-chart.js"></script>
 	</body>
 </html>

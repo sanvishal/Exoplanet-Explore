@@ -51,6 +51,9 @@ h1.main-title {
 .text-body > .side-text {
 	color: #9e9e9e;
 	font-family: "Josefin Sans", sans-serif;
+	line-height: 16px;
+	font-size: 14px;
+	font-style: italic;
 }
 
 .text-body > .main-text {
