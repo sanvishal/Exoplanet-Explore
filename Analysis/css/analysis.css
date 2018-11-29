@@ -72,3 +72,25 @@ h1.main-title {
 	border-radius: 5px;
 	max-width: 500px !important;
 }
+
+.square {
+	margin-left: -100px;
+	width: 280px;
+	height: 60px;
+	background-color: #de2f53;
+	position: absolute;
+	z-index: 1;
+	opacity: 0.1;
+}
+
+.wrap-analysis {
+	background-image: url("../img/bg.png");
+}
+
+.wrap-analysis > .analysis {
+	width: 90%;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #ffffff;
+}
