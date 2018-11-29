@@ -5,6 +5,11 @@
 		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 		<title>Exoplanets Explore</title>
 		<link rel="stylesheet" href="css/main.css" />
+		<link
+			href="https://fonts.googleapis.com/css?family=Ubuntu+Mono"
+			rel="stylesheet"
+		/>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.min.js"></script>
 	</head>
 	<body>
 		<div class="header">
@@ -16,5 +21,32 @@
 			<div class="circle"></div>
 			<div class="line"></div>
 		</div>
+		<main class="wrap">
+			<div class="details">
+				<div class="name">Exoplanet Explore</div>
+				<div class="info">An Analysis report on Exoplanets</div>
+				<br />
+				<div class="button-holder">
+					<input type="button" class="button" value="The Analysis" />
+				</div>
+			</div>
+			<div class="canvas-p5">
+				<div id="vis-bg">
+					<ul type="disc" class="planet-details">
+						<li>Planet Name: <b>CoRoT-7 b</b></li>
+						<li>Discovery Method: <b>Transit</b></li>
+					</ul>
+				</div>
+				<div id="vis"></div>
+			</div>
+		</main>
+		<div class="analysis">
+			<div class="divider">
+				<div class="line"></div>
+				<div class="circle"></div>
+				<div class="line"></div>
+			</div>
+		</div>
+		<script src="js/sketch.js"></script>
 	</body>
 </html>

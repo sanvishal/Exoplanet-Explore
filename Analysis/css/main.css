@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Josefin+Sans:700");
+@import url("https://fonts.googleapis.com/css?family=Lato:700");
+@import url("https://fonts.googleapis.com/css?family=Lato");
 
 body {
 	margin: 0;
@@ -11,6 +13,7 @@ body {
 	font-size: 45px;
 	text-align: center;
 	margin-top: 30px;
+	letter-spacing: 4px;
 }
 
 .logo > img {
@@ -58,8 +61,101 @@ body {
 	margin-right: auto;
 	width: 10px;
 	height: 10px;
-	border-radius: 15px;
-	left: 5%;
-	border: 1px solid grey;
+	border-radius: 10px;
+	left: 4%;
+	border: 3px solid grey;
 	position: relative;
+	top: -30%;
+}
+
+.wrap {
+	width: 80%;
+	height: 90vh;
+	display: flex;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.wrap > .details {
+	flex: 2 0 0;
+	align-self: center;
+	margin-top: -25%;
+}
+
+.wrap > .details > .name {
+	font-family: "lato";
+	font-weight: 700;
+	font-size: 50px;
+	letter-spacing: 2px;
+}
+
+.wrap > .details > .info {
+	font-family: "lato";
+	font-size: 25px;
+}
+
+.wrap > .canvas-p5 {
+	flex: 3 0 0;
+	margin-left: 100px;
+}
+
+.button {
+	border: 4px solid #333333;
+	background: none;
+	border-radius: 8px;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-family: "lato";
+	font-size: 20px;
+	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.19), 0 3px 5px rgba(0, 0, 0, 0.24);
+	transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.button:hover {
+	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+#vis-bg {
+	margin-top: 60px;
+	width: 35%;
+	height: 70%;
+	position: absolute;
+	background: #333333;
+	border-radius: 25px;
+	z-index: -1;
+	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+#vis {
+	margin-left: 66px;
+	margin-top: 200px;
+	border-radius: 30px;
+	overflow: hidden;
+	-webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC); /* this fixes the overflow:hidden in Chrome/Opera */
+}
+
+.planet-details {
+	padding-top: 35px;
+	padding-left: 100px;
+	letter-spacing: 2px;
+	font-size: 20px;
+	font-family: "lato";
+	color: #ffffff;
+}
+
+.analysis {
+	width: 80%;
+	height: 100vh;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.analysis > .title {
+	font-family: "lato";
+	font-size: 40px;
+	text-align: center;
+	font-weight: bold;
 }
