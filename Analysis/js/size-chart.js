@@ -32,15 +32,6 @@ var yValue = function(d) {
 	},
 	yAxis = d3.axisLeft(yScale).scale(yScale);
 
-var cValue = function(d) {
-		return d.SurfaceTempK;
-	},
-	color = d3
-		.scaleLinear()
-		.domain([0, 3060])
-		.interpolate(d3.interpolateHcl)
-		.range([d3.rgb("#007AFF"), d3.rgb("#d80833")]);
-
 var svg = d3
 	.select("svg")
 	.attr("width", width + margin.left + margin.right)
@@ -124,6 +115,15 @@ d3.csv("../size-data/planets.csv", function(error, data) {
 	//console.log(data);
 	xScale.domain([d3.min(data, xValue) - 1, d3.max(data, xValue) + 1]);
 	yScale.domain([d3.min(data, yValue) - 1, d3.max(data, yValue) + 1]);
+
+	var cValue = function(d) {
+			return d["SurfaceTempK"];
+		},
+		color = d3
+			.scaleLinear()
+			.domain([0, 3060])
+			.interpolate(d3.interpolateHcl)
+			.range([d3.rgb("#007AFF"), d3.rgb("#d80833")]);
 
 	var xaxis = svg
 		.append("g")
