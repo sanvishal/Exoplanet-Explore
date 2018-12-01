@@ -75,12 +75,13 @@ h1.main-title {
 
 .square {
 	margin-left: -100px;
-	width: 280px;
+	width: 40%;
 	height: 60px;
 	background-color: #de2f53;
 	position: absolute;
 	z-index: 1;
 	opacity: 0.1;
+	border-radius: 5px;
 }
 
 .wrap-analysis {
@@ -93,4 +94,19 @@ h1.main-title {
 	margin-left: auto;
 	margin-right: auto;
 	background-color: #ffffff;
+}
+
+#indicator {
+	margin-top: 50px;
+}
+
+.perc,
+.corr-text {
+	font-weight: 1000;
+	fill: #de2f53;
+	font-family: "Montserrat";
+}
+
+.corr-betw {
+	font-family: "Montserrat";
 }

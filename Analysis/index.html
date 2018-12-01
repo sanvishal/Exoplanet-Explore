@@ -128,7 +128,7 @@
 					</div>
 				</div>
 			</section>
-			<div class="graph-container">
+			<div class="graph-container" id = "size-chart">
 				<svg>
 					<defs>
 						<filter
@@ -223,11 +223,30 @@
 					</div>
 				</div>
 			</section>
+			<section class="section interesting-features">
+				<div class="container">
+					<div class="square"></div>
+					<h1 class="title title-text">Correlation of Features</h1>
+					<h2 class="subtitle">
+						&nbsp;&nbsp;Some features directly or indirectly depend on one another
+					</h2>
+					
+				</div>
+				<div class = "graph-group columns">
+					<div class="graph-container column"
+						 id="corr-chart"></div>
+					<div class = "column"><div id="indicator"></div><svg width="500"
+					     height="300"
+					     id="scatter-chart"></svg></div>
+				</div>
+			</section>
 		</div>
 		</main>
+		
 		<script src="js/sketch.js"></script>
 		<script src="js/d3.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-annotation/2.3.1/d3-annotation.min.js"></script>
 		<script src="js/size-chart.js"></script>
+		<script src = "js/corr-chart.js" />
 	</body>
 </html>

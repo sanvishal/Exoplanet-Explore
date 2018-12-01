@@ -33,18 +33,12 @@ var yValue = function(d) {
 	yAxis = d3.axisLeft(yScale).scale(yScale);
 
 var svg = d3
+	.selectAll("#size-chart")
 	.select("svg")
 	.attr("width", width + margin.left + margin.right)
 	.attr("height", height + margin.top + margin.bottom)
 	.append("g")
 	.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-// add the tooltip area to the webpage
-var tooltip = d3
-	.select("body")
-	.append("div")
-	.attr("class", "tooltip")
-	.style("opacity", 0);
 
 let info_group = svg
 	.append("g")
@@ -102,7 +96,7 @@ function clamp(num, min, max) {
 	return num <= min ? min : num >= max ? max : num;
 }
 
-d3.csv("../size-data/planets.csv", function(error, data) {
+d3.csv("./size-data/planets.csv", function(error, data) {
 	var smallest = data[2771];
 	data = data.slice(0, 200);
 	data.push(smallest);
