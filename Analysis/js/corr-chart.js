@@ -363,10 +363,7 @@ function Matrix(options) {
 				.attr("y1", y)
 				.attr("x2", x)
 				.attr("y2", height - 15);
-		})
-		.on("click", function() {
-			var dataThis = +d3.select(this).attr("data-id"),
-				dataParent = +d3.select(this.parentNode).attr("data-id");
+
 			Scatter(dataParent, dataThis, scatterData);
 		});
 
@@ -465,11 +462,14 @@ function Matrix(options) {
 		});
 }
 
-var scatterSVG = d3.select("#scatter-chart").append("g");
+var scatterSVG = d3.select("#scatter-chart");
 
 function Scatter(col, row, scatterData) {
+	scatterSVG.html("");
+
 	var datacol = [],
-		datarow = [];
+		datarow = [],
+		data = [];
 
 	for (let i = 0; i < scatterData.length; i++) {
 		for (entry in scatterData[i]) {
@@ -482,35 +482,131 @@ function Scatter(col, row, scatterData) {
 		}
 	}
 
-	console.log(datarow, datacol);
+	for (let i = 0; i < datacol.length; i++) {
+		data.push([datacol[i], datarow[i]]);
+	}
 
-	d3.selectAll(".points").remove();
-	d3.selectAll(".axis").remove();
-	d3.selectAll(".scatterlabel").remove();
+	var margin = { top: 20, right: 15, bottom: 60, left: 60 },
+		width = 550 - margin.left - margin.right,
+		height = 350 - margin.top - margin.bottom;
 
-	var width = +scatterSVG.attr("width"),
-		height = +scatterSVG.attr("height");
+	var colorMap = d3
+		.scaleLinear()
+		.domain([
+			d3.min(data, function(d) {
+				return d[0];
+			}),
+			d3.max(data, function(d) {
+				return d[0];
+			})
+		])
+		.range(["#77A1D3", "#DE2F53"]);
 
-	var x = d3.scale
-		.linear()
-		.domain([Math.min(...datacol), Math.max(...datacol)])
+	scatterSVG = scatterSVG
+		.attr("width", width + margin.right + margin.left)
+		.attr("height", height + margin.top + margin.bottom);
+
+	var x = d3
+		.scaleLinear()
+		.domain([
+			d3.min(data, function(d) {
+				return d[0];
+			}),
+			d3.max(data, function(d) {
+				return d[0];
+			})
+		])
 		.range([0, width]);
-	
-	var y = d3.scale
-		.linear()
-		.domain([Math.min(...datarow), Math.max(...datarow)])
+
+	var y = d3
+		.scaleLinear()
+		.domain([
+			d3.min(data, function(d) {
+				return d[1];
+			}),
+			d3.max(data, function(d) {
+				return d[1];
+			})
+		])
 		.range([height, 0]);
 
-	var xAxis = d3.scatterSVG.axis()
-		.scale(x)
-		.orient("bottom")
-		.ticks(5);
+	var scatterCont = scatterSVG
+		.append("g")
+		.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+		.attr("width", width)
+		.attr("height", height)
+		.attr("class", "scatter-cont");
 
-	var yAxis = d3.scatterSVG
-		.axis()
-		.scale(y)
-		.ticks(5)
-		.orient("left");
+	var xAxis = d3.axisBottom().scale(x);
+
+	scatterCont
+		.append("g")
+		.attr("transform", "translate(0," + height + ")")
+		.attr("class", "x-axis")
+		.call(xAxis);
+
+	var yAxis = d3.axisLeft().scale(y);
+
+	scatterCont
+		.append("g")
+		.attr("transform", "translate(0,0)")
+		.attr("class", "y-axis")
+		.call(yAxis);
+
+	//x-axis label
+	scatterCont
+		.append("text")
+		.attr(
+			"transform",
+			"translate(" + width / 2 + " ," + (height + margin.top + 20) + ")"
+		)
+		.style("text-anchor", "middle")
+		.attr("font-size", 12)
+		.text(labels[col]);
+
+	//y-axis label
+	scatterCont
+		.append("text")
+		.attr("transform", "rotate(-90)")
+		.attr("y", 0 - margin.left)
+		.attr("x", 0 - height / 2)
+		.attr("dy", "1em")
+		.style("text-anchor", "middle")
+		.attr("font-size", 12)
+		.text(labels[row]);
+
+	scatterCont.selectAll("text").attr("fill", "grey");
+	scatterCont
+		.selectAll("line")
+		.attr("fill", "grey")
+		.attr("stroke", "grey");
+
+	scatterCont
+		.select(".x-axis")
+		.selectAll("path")
+		.remove();
+	scatterCont
+		.select(".y-axis")
+		.selectAll("path")
+		.remove();
+
+	var dots = scatterCont.append("g");
+
+	dots
+		.selectAll("scatter-dots")
+		.data(data)
+		.enter()
+		.append("circle")
+		.attr("cx", function(d, i) {
+			return x(d[0]);
+		})
+		.attr("cy", function(d) {
+			return y(d[1]);
+		})
+		.attr("r", 3)
+		.attr("fill", function(d) {
+			return colorMap(d[0]);
+		});
 }
 
 d3.queue()
@@ -536,4 +632,6 @@ d3.queue()
 			end_color: "#E684AE",
 			scatterData: scatter
 		});
+
+		Scatter(0, 1, scatter);
 	});
