@@ -368,22 +368,8 @@ function Matrix(options) {
 		});
 
 	cell.append("circle").attr("r", function(d) {
-		return clamp(x.bandwidth() * d, 5, x.bandwidth() / 3);
+		return clamp((x.bandwidth() * d) / 1.5, 5, x.bandwidth() / 3);
 	});
-
-	cell
-		.append("text")
-		.attr("dy", ".32em")
-		.attr("x", x.bandwidth() / 2)
-		.attr("y", y.bandwidth() / 2)
-		.attr("text-anchor", "middle")
-		.style("fill", function(d, i) {
-			return d >= maxValue / 2 ? "white" : "black";
-		})
-		.text(function(d, i) {
-			return formatDecimalComma(d);
-		})
-		.attr("opacity", 0);
 
 	row
 		.selectAll(".cell")

@@ -1,0 +1,21 @@
+{
+	"name": "analysis",
+	"version": "1.0.0",
+	"description": "An Exoplanet data analysis report",
+	"main": "app.js",
+	"scripts": {
+		"start": "node app.js",
+		"deploy": "now --public && now alias && now rm %npm_package_name% --safe --yes"
+	},
+	"now": {
+		"name": "analysis",
+		"alias": [
+			"exoplanetexplore.now.sh"
+		]
+	},
+	"author": "TK Vishal",
+	"license": "ISC",
+	"dependencies": {
+		"express": "^4.16.4"
+	}
+}

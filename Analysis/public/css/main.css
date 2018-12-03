@@ -118,7 +118,7 @@ body {
 
 #vis-bg {
 	margin-top: 60px;
-	width: 35%;
+	width: 500px;
 	height: 70%;
 	position: absolute;
 	background: #333333;
@@ -143,4 +143,3 @@ body {
 	font-family: "lato";
 	color: #ffffff;
 }
-

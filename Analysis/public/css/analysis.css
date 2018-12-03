@@ -20,6 +20,11 @@ text {
 	font-family: "Josefin Sans", sans-serif;
 }
 
+.note-spec {
+	font-family: "Josefin Sans", sans-serif;
+	margin-top: -52px;
+}
+
 #planet-name {
 	font-weight: 1000;
 	fill: #d80833;
