@@ -8,6 +8,7 @@
 		"start": "node app.js",
 		"deploy": "now --public && now alias && now rm %npm_package_name% --safe --yes",
 		"build-corr-data": "cd .. && cd Exoplanet-Data && python correlation.py",
+		"build-cartesian-data": "cd .. && cd Exoplanet-Data && python j2000-to-xyz.py",
 		"liveserver": "nodemon app.js"
 	},
 	"now": {
