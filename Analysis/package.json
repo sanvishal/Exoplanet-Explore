@@ -3,9 +3,12 @@
 	"version": "1.0.0",
 	"description": "An Exoplanet data analysis report",
 	"main": "app.js",
+	"git": "git@gitlab.com:sanvishal/hackbenchers-2.git",
 	"scripts": {
 		"start": "node app.js",
-		"deploy": "now --public && now alias && now rm %npm_package_name% --safe --yes"
+		"deploy": "now --public && now alias && now rm %npm_package_name% --safe --yes",
+		"build-corr-data": "cd .. && cd Exoplanet-Data && python correlation.py",
+		"liveserver": "nodemon app.js"
 	},
 	"now": {
 		"name": "analysis",
