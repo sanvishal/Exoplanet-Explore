@@ -1,7 +1,7 @@
 var margin = { top: 20, right: 20, bottom: 50, left: 40 },
 	width = 1150 - margin.left - margin.right,
 	height = 450 - margin.top - margin.bottom;
-
+console.log(height);
 var formatDecimalComma = d3.format(",.2f");
 
 const xsAnn = d3
@@ -122,7 +122,7 @@ d3.csv("./size-data/planets.csv", function(error, data) {
 	var xaxis = svg
 		.append("g")
 		.attr("class", "x-axis")
-		.attr("transform", "translate(0," + height + ")")
+		.attr("transform", "translate(0," + 380 + ")")
 		.call(xAxis);
 
 	var yaxis = svg
@@ -225,11 +225,11 @@ d3.csv("./size-data/planets.csv", function(error, data) {
 				"Mass: " +
 					(+d["PlanetaryMassJpt"] === 0
 						? "data not avialable"
-						: formatDecimalComma(1.898e27 * +d["PlanetaryMassJpt"])) +
+						: formatDecimalComma(1.898e27 * +d["PlanetaryMassJpt"]) + "kg") +
 					"\u00A0\u00A0\u00A0\u00A0Radius: " +
 					(+d["RadiusJpt"] === 0
 						? "data not avialable"
-						: formatDecimalComma(69911 * +d["RadiusJpt"]))
+						: formatDecimalComma(69911 * +d["RadiusJpt"]) + "km")
 			);
 			var mx = d3.select(this).attr("cx"),
 				my = d3.select(this).attr("cy"),

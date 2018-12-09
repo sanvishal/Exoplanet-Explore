@@ -36,18 +36,19 @@ for i in range(len(ra_list)):
 
     a = radians((ra[0]*15) + (ra[1]*0.25) + (ra[2]*0.004166))
     b = radians((abs(dec[0]) + (dec[1] / 60) + (dec[2] / 3600)) * dec_sign)
-    c = dist_parsec
+    c = dist_parsec*3.262
 
     x = (c * cos(b)) * cos(a)
     y = (c * cos(b)) * sin(a)
     z = c * sin(b)
 
     result.append([name_list[i], name_list[i]
-                   [:len(name_list[i])-2], x, y, z, dist_list[i]])
+                   [:len(name_list[i])-2], x, y, z, dist_list[i]*3.262
+                   ])
 
 print(" >> ra/dec to cartesian converted")
 res_csv = pd.DataFrame(
-    result, columns=['PlanetIdentifier', 'SystemName', 'x', 'y', 'z', 'DistFromSunParsec'])
-res_csv.sort_values('DistFromSunParsec', inplace=True)
+    result, columns=['PlanetIdentifier', 'SystemName', 'x', 'y', 'z', 'DistFromSunly', ])
+res_csv.sort_values('DistFromSunly', inplace=True)
 res_csv.to_csv("../Analysis/public/cartesian-data/cart.csv")
-print("\033[1m"+" >> csv exported to public/cartesian-data"+"\033[0m")
+print('\033[1m'+" >> csv exported to public/cartesian-data"+'\033[0m')

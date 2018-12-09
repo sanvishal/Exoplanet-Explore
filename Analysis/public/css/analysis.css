@@ -115,3 +115,7 @@ h1.main-title {
 .corr-betw {
 	font-family: "Montserrat";
 }
+
+.search-form {
+	width: 200% !important;
+}

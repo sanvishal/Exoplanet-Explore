@@ -39,7 +39,7 @@
 				<br />
 				<div class="button-holder">
 					<a href="#analysis"
-						><input type="button" class="button" value="The Analysis"
+						><input type="button" class="button explore-btn" value="The Analysis"
 					/></a>
 				</div>
 			</div>
@@ -143,6 +143,20 @@
 								height="200%"
 							>
 								<feGaussianBlur stdDeviation="1.5" result="coloredBlur" />
+								<feMerge>
+									<feMergeNode in="coloredBlur" />
+									<feMergeNode in="SourceGraphic" />
+								</feMerge>
+							</filter>
+							<filter
+								id="sun-grad"
+								filterUnits="objectBoundingBox"
+								x="-50%"
+								y="-50%"
+								width="200%"
+								height="200%"
+							>
+								<feGaussianBlur stdDeviation="6.5" result="coloredBlur" />
 								<feMerge>
 									<feMergeNode in="coloredBlur" />
 									<feMergeNode in="SourceGraphic" />
@@ -329,24 +343,57 @@
 						<div class="square"></div>
 						<h1 class="title title-text">Planets-Near-Me</h1>
 						<h2 class="subtitle">&nbsp;&nbsp;Near is a relative term</h2>
-
 						<div class="columns content text-body">
-							<div class="column is-2 side-text"></div>
+							<div class="column is-2 side-text">
+								<figure class="image is-256x256">
+									<img src="img/prox.jpg" />
+									<figcaption class="caption">
+										Artist impression of Proxima Centarui b.
+										<a
+											target="_blank"
+											href="https://en.wikipedia.org/wiki/Proxima_Centauri_b#/media/File:Artist%E2%80%99s_impression_of_Proxima_Centauri_b_shown_hypothetically_as_an_arid_rocky_super-earth.jpg"
+											>(src)</a
+										>
+									</figcaption>
+								</figure>
+								<figure class="image is-256x256">
+									<img src="img/grav.gif" />
+									<figcaption class="caption">
+										Moon is tidally/gravitaionally locked, that is why Moon
+										always shows its one side, while other side is always
+										hidden.
+										<a
+											target="_blank"
+											href="https://en.wikipedia.org/wiki/Tidal_locking#/media/File:Tidal_locking_of_the_Moon_with_the_Earth.gif"
+											>(src)</a
+										>
+									</figcaption>
+								</figure>
+							</div>
 							<div class="column is-10 main-text">
 								<p>
 									In 2016, Kepler discovered a new Earth sized planet orbiting
-									the Proxima Centarui system named as
-									<span class="highlight">Proxima Centarui b</span>. It is just
+									the Proxima Centauri system named as
+									<span class="highlight">Proxima Centauri b</span>. It is just
 									a cosmic hop away from our solar system, which is about
 									<span class="highlight">1.295 parsecs</span>(4.2237251
 									lightyears). Its mass is at least 1.3 times that of Earth and
-									that it goes around its Host star every 11 Earth days.
+									that it goes around its Host star every 11 Earth days. Proxima
+									Centauri b orbits in its star's habitable zone, meaning it's
+									at just the right distance to receive enough starlight to keep
+									water in its surface in liquid state. But this zone is
+									extremely close to the star. So it's likely that the planet
+									has become
+									<span class="highlight">gravitationally locked</span>. This
+									means that the same side of Proxima Centauri b always faces
+									its parent star, much like how the Moon always shows the same
+									side to Earth.
 								</p>
 								<p>
 									The poor planet recieves occasional solar flares from its
 									erupting parent star. On March 24 2017, two powerful solar
 									flares erupted in two minutes span and blasting Proxima
-									Centarui b with <span class="highlight">4000 times</span> more
+									Centauri b with <span class="highlight">4000 times</span> more
 									radiation than Earth receives in a average major flare. Flares
 									like this would evaporate and tear down the atmosphere or
 									ocean. It would sterlize the surface, leaving no habitable
@@ -354,15 +401,42 @@
 								</p>
 							</div>
 						</div>
+						<div class="graph-group columns">
+							<div class="column is-4 has-text-centered">
+								<a class="button is-link loaders is-rounded reset is-center"
+								   onclick="reset()">Reset Zoom</a>
+								<br><br>
+								<div class="field has-addons">
+									<div class="control search-form">
+										<input class="input planet-name-input is-info"
+										       type="text"
+											   placeholder="Planet Name"
+											   name = "search">
+									</div>
+									
+									<div class = "control">
+										<a class="button is-link locate loaders"
+									   onclick="locate()">Locate 📌</a>
+									</div>
+									<br>
+								</div>
+							</div>
+							<div class="graph-container column" id="dist-chart"></div>
+						</div>
 					</div>
 				</section>
 			</div>
 		</main>
 
 		<script src="js/sketch.js"></script>
-		<script src="js/d3.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.0.5/d3.min.js"></script>
+		<script src="js/libs/d3.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-annotation/2.3.1/d3-annotation.min.js"></script>
+		<script src="js/planet-finder.js"></script>
 		<script src="js/size-chart.js"></script>
 		<script src="js/corr-chart.js"></script>
+		<script src = "js/draw-system.js"></script>
+		<script src = "js/libs/autocomplete.js"></script>
+		<script src="js/dist-chart.js"></script>
 	</body>
 </html>
