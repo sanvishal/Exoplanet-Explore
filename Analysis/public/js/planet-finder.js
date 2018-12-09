@@ -1,7 +1,6 @@
-var masterData;
-var findPlanetByName;
+var masterData, findPlanetByName;
 
-d3.csv("./given-data/oec.csv", function(error, data) {
+d3.csv("./given-data/oec.csv", function (error, data) {
 	if (error) {
 		console.error(error);
 	}
@@ -18,7 +17,7 @@ d3.csv("./given-data/oec.csv", function(error, data) {
 });
 
 var findPlanetbyHTML = (key, parent, child, attr, callback) => {
-	parent.selectAll(child).each(function() {
+	parent.selectAll(child).each(function () {
 		if (key === d3.select(this).attr(attr)) {
 			callback(this);
 		}
@@ -29,14 +28,14 @@ var findPlanetbyHTML = (key, parent, child, attr, callback) => {
 var groupBy = (data, key, onlyData, callback) => {
 	if (!onlyData) {
 		callback(
-			data.reduce(function(rv, x) {
+			data.reduce(function (rv, x) {
 				(rv[x[key]] = rv[x[key]] || []).push(x);
 				return rv;
 			}, {})
 		);
 	} else {
 		callback(
-			data.reduce(function(rv, x) {
+			data.reduce(function (rv, x) {
 				(rv[x[key]] = rv[x[key]] || []).push(x);
 				return rv;
 			}, {})
@@ -46,12 +45,12 @@ var groupBy = (data, key, onlyData, callback) => {
 
 function groupBySpec(array, f) {
 	var groups = {};
-	array.forEach(function(o) {
+	array.forEach(function (o) {
 		var group = JSON.stringify(f(o));
 		groups[group] = groups[group] || [];
 		groups[group].push(o);
 	});
-	return Object.keys(groups).map(function(group) {
+	return Object.keys(groups).map(function (group) {
 		return groups[group];
 	});
 }

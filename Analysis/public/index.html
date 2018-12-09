@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 	<head>
 		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<meta http-equiv="X-UA-Compatible"
+		      content="ie=edge" />
 		<title>Exoplanets Explore</title>
-		<link rel="shortcut icon" type="image/png" href="img/exoplanet.png" />
-		<link rel="stylesheet" href="css/main.css" />
-		<link
-			href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:700"
-			rel="stylesheet"
-		/>
+		<link rel="shortcut icon"
+		      type="image/png"
+		      href="img/exoplanet.png" />
+		<link rel="stylesheet"
+		      href="css/main.css" />
+		<link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:700"
+		      rel="stylesheet" />
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.min.js"></script>
-		<link
-			href="https://fonts.googleapis.com/css?family=Lato"
-			rel="stylesheet"
-		/>
-		<link rel="stylesheet" href="css/bulma.css" />
-		<link
-			rel="stylesheet"
-			href="https://cdn.jsdelivr.net/npm/bulma-divider@2.0.1/dist/css/bulma-divider.min.css"
-		/>
-		<link rel="stylesheet" href="css/analysis.css" />
+		<link href="https://fonts.googleapis.com/css?family=Lato"
+		      rel="stylesheet" />
+		<link rel="stylesheet"
+		      href="css/bulma.css" />
+		<link rel="stylesheet"
+		      href="https://cdn.jsdelivr.net/npm/bulma-divider@2.0.1/dist/css/bulma-divider.min.css" />
+		<link rel="stylesheet"
+		      href="css/analysis.css" />
 	</head>
+
 	<body>
 		<div class="header">
 			<div class="title">EXOPLANET EXPLORE</div>
@@ -38,14 +40,15 @@
 				<div class="info">An Analysis report on Exoplanets</div>
 				<br />
 				<div class="button-holder">
-					<a href="#analysis"
-						><input type="button" class="button explore-btn" value="The Analysis"
-					/></a>
+					<a href="#analysis"><input type="button"
+						       class="button explore-btn"
+						       value="The Analysis" /></a>
 				</div>
 			</div>
 			<div class="canvas-p5">
 				<div id="vis-bg">
-					<ul type="disc" class="planet-details">
+					<ul type="disc"
+					    class="planet-details">
 						<li>Planet Name: <b>CoRoT-7 b</b></li>
 						<li>Discovery Method: <b>Transit</b></li>
 					</ul>
@@ -54,14 +57,16 @@
 			</div>
 		</main>
 		<main class="wrap-analysis">
-			<div class="analysis" id="analysis">
+			<div class="analysis"
+			     id="analysis">
 				<div class="divider">
 					<div class="line"></div>
 					<div class="circle"></div>
 					<div class="line"></div>
 				</div>
 				<br /><br />
-				<div class="container columns" style="font-size: 20px;">
+				<div class="container columns"
+				     style="font-size: 20px;">
 					<div class="column is-2"></div>
 					<div class="column is-10">
 						<p>
@@ -85,11 +90,8 @@
 									<img src="img/larg.jpg" />
 									<figcaption class="caption">
 										Artist Impression of HD 100546 b
-										<a
-											target="_blank"
-											href="https://en.wikipedia.org/wiki/File:Artist%27s_impression_of_a_gas_giant_planet_forming_in_the_disc_around_the_young_star_HD_100546.jpg"
-											>(src)</a
-										>
+										<a target="_blank"
+										   href="https://en.wikipedia.org/wiki/File:Artist%27s_impression_of_a_gas_giant_planet_forming_in_the_disc_around_the_young_star_HD_100546.jpg">(src)</a>
 									</figcaption>
 								</figure>
 								<br />
@@ -131,32 +133,31 @@
 						</div>
 					</div>
 				</section>
-				<div class="graph-container" id="size-chart">
+				<div class="graph-container"
+				     id="size-chart">
 					<svg>
 						<defs>
-							<filter
-								id="glow"
-								filterUnits="objectBoundingBox"
-								x="-50%"
-								y="-50%"
-								width="200%"
-								height="200%"
-							>
-								<feGaussianBlur stdDeviation="1.5" result="coloredBlur" />
+							<filter id="glow"
+							        filterUnits="objectBoundingBox"
+							        x="-50%"
+							        y="-50%"
+							        width="200%"
+							        height="200%">
+								<feGaussianBlur stdDeviation="1.5"
+								                result="coloredBlur" />
 								<feMerge>
 									<feMergeNode in="coloredBlur" />
 									<feMergeNode in="SourceGraphic" />
 								</feMerge>
 							</filter>
-							<filter
-								id="sun-grad"
-								filterUnits="objectBoundingBox"
-								x="-50%"
-								y="-50%"
-								width="200%"
-								height="200%"
-							>
-								<feGaussianBlur stdDeviation="6.5" result="coloredBlur" />
+							<filter id="sun-grad"
+							        filterUnits="objectBoundingBox"
+							        x="-50%"
+							        y="-50%"
+							        width="200%"
+							        height="200%">
+								<feGaussianBlur stdDeviation="6.5"
+								                result="coloredBlur" />
 								<feMerge>
 									<feMergeNode in="coloredBlur" />
 									<feMergeNode in="SourceGraphic" />
@@ -165,10 +166,8 @@
 						</defs>
 					</svg>
 				</div>
-				<div
-					class="container has-text-centered note column is-three-fifths"
-					style="color: grey;"
-				>
+				<div class="container has-text-centered note column is-three-fifths"
+				     style="color: grey;">
 					<b>Note:</b> This planet colors and sizes in this graph have been
 					saturated for better visibility. The sizes are linearly scaled to a
 					magnitude of [actual-planet-radius(jpt) * 3]
@@ -187,11 +186,8 @@
 									<img src="img/smol.jpg" />
 									<figcaption class="caption">
 										Artist Impression of Kepler-37 b
-										<a
-											target="_blank"
-											href="https://en.wikipedia.org/wiki/File:Kepler-37b.jpg"
-											>(src)</a
-										>
+										<a target="_blank"
+										   href="https://en.wikipedia.org/wiki/File:Kepler-37b.jpg">(src)</a>
 									</figcaption>
 								</figure>
 								<br />
@@ -199,11 +195,8 @@
 									<img src="img/lyra.jpg" />
 									<figcaption class="caption">
 										Constellation <span class="highlight">Lyra</span>
-										<a
-											target="_blank"
-											href="https://utahsadventurefamily.com/find-lyra-constellation/"
-											>(src)</a
-										>
+										<a target="_blank"
+										   href="https://utahsadventurefamily.com/find-lyra-constellation/">(src)</a>
 									</figcaption>
 								</figure>
 							</div>
@@ -229,8 +222,7 @@
 									<span class="highlight">427°C</span>. If we happen to be there
 									death would occur within a minute. It has a radius of
 									<span class="highlight">
-										1950km(about 213km bigger than Moon)</span
-									>. Due to its radius and high surface temperature. It is not
+										1950km(about 213km bigger than Moon)</span>. Due to its radius and high surface temperature. It is not
 									possible to have an atmosphere, suggesting that they don't
 									support liquid water. There are 2 more planets orbiting the
 									host star, having very high effective temperatures making them
@@ -250,16 +242,15 @@
 						</h2>
 
 						<div class="graph-group columns">
-							<div class="graph-container column" id="corr-chart"></div>
+							<div class="graph-container column"
+							     id="corr-chart"></div>
 							<div class="column">
 								<div id="indicator"></div>
 								<svg id="scatter-chart"></svg>
 							</div>
 						</div>
-						<div
-							class="container has-text-centered note note-spec column is-three-fifths"
-							style="color: grey;"
-						>
+						<div class="container has-text-centered note note-spec column is-three-fifths"
+						     style="color: grey;">
 							<b>Note:</b> This is a Correlation Matrix graph, it provides a
 							visual relationship between different parameters in a heatmap.
 							Correlation is Positive when the values increase together, and
@@ -273,11 +264,8 @@
 									<img src="img/kep.gif" />
 									<figcaption class="caption">
 										Kepler's Period law relationship
-										<a
-											target="_blank"
-											href="http://astronomyonline.org/Science/Orbits.asp"
-											>(src)</a
-										>
+										<a target="_blank"
+										   href="http://astronomyonline.org/Science/Orbits.asp">(src)</a>
 									</figcaption>
 								</figure>
 								<figure class="image is-256x256">
@@ -285,11 +273,8 @@
 									<figcaption class="caption">
 										Approximate boltzmann relation between star mass and
 										temperature
-										<a
-											target="_blank"
-											href="https://physics.stackexchange.com/questions/6771/star-surface-temperature-vs-mass"
-											>(src)</a
-										>
+										<a target="_blank"
+										   href="https://physics.stackexchange.com/questions/6771/star-surface-temperature-vs-mass">(src)</a>
 									</figcaption>
 								</figure>
 
@@ -298,16 +283,16 @@
 								comprised of elements other than helium and hydrogen
 							</div>
 							<div class="column is-10 main-text">
-								<b> <h4>Some key takeaways:</h4></b>
+								<b>
+									<h4>Some key takeaways:</h4>
+								</b>
 								<ul class="takeaways">
 									<li class="ta">
 										High correlation between Orbital Period and semimajor
 										axis(<span class="highlight">98.59%</span>) as expected. As
 										given by Kepler's Period laws,
-										<em
-											>The square of the period of any planet is proportional to
-											the cube of the semimajor axis of its orbit.</em
-										>
+										<em>The square of the period of any planet is proportional to
+											the cube of the semimajor axis of its orbit.</em>
 										It also explains about the Moderate Correlation between
 										Orbital period and Mass of planet.
 									</li>
@@ -349,11 +334,8 @@
 									<img src="img/prox.jpg" />
 									<figcaption class="caption">
 										Artist impression of Proxima Centarui b.
-										<a
-											target="_blank"
-											href="https://en.wikipedia.org/wiki/Proxima_Centauri_b#/media/File:Artist%E2%80%99s_impression_of_Proxima_Centauri_b_shown_hypothetically_as_an_arid_rocky_super-earth.jpg"
-											>(src)</a
-										>
+										<a target="_blank"
+										   href="https://en.wikipedia.org/wiki/Proxima_Centauri_b#/media/File:Artist%E2%80%99s_impression_of_Proxima_Centauri_b_shown_hypothetically_as_an_arid_rocky_super-earth.jpg">(src)</a>
 									</figcaption>
 								</figure>
 								<figure class="image is-256x256">
@@ -362,11 +344,8 @@
 										Moon is tidally/gravitaionally locked, that is why Moon
 										always shows its one side, while other side is always
 										hidden.
-										<a
-											target="_blank"
-											href="https://en.wikipedia.org/wiki/Tidal_locking#/media/File:Tidal_locking_of_the_Moon_with_the_Earth.gif"
-											>(src)</a
-										>
+										<a target="_blank"
+										   href="https://en.wikipedia.org/wiki/Tidal_locking#/media/File:Tidal_locking_of_the_Moon_with_the_Earth.gif">(src)</a>
 									</figcaption>
 								</figure>
 							</div>
@@ -408,20 +387,23 @@
 								<br><br>
 								<div class="field has-addons">
 									<div class="control search-form">
-										<input class="input planet-name-input is-info"
+										<input class="input is-rounded planet-name-input is-info"
 										       type="text"
-											   placeholder="Planet Name"
-											   name = "search">
+										       placeholder="Planet Name"
+										       name="search">
 									</div>
-									
-									<div class = "control">
+									<div class="control">
 										<a class="button is-link locate loaders"
-									   onclick="locate()">Locate 📌</a>
+										   onclick="locate()">Locate 📌</a>
 									</div>
 									<br>
 								</div>
+								<div id="planet-sim">
+
+								</div>
 							</div>
-							<div class="graph-container column" id="dist-chart"></div>
+							<div class="graph-container column"
+							     id="dist-chart"></div>
 						</div>
 					</div>
 				</section>
@@ -435,8 +417,9 @@
 		<script src="js/planet-finder.js"></script>
 		<script src="js/size-chart.js"></script>
 		<script src="js/corr-chart.js"></script>
-		<script src = "js/draw-system.js"></script>
-		<script src = "js/libs/autocomplete.js"></script>
+		<script src="js/draw-system.js"></script>
+		<script src="js/libs/autocomplete.js"></script>
 		<script src="js/dist-chart.js"></script>
 	</body>
+
 </html>

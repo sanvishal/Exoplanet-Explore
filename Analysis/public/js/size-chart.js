@@ -1,7 +1,7 @@
 var margin = { top: 20, right: 20, bottom: 50, left: 40 },
 	width = 1150 - margin.left - margin.right,
 	height = 450 - margin.top - margin.bottom;
-console.log(height);
+
 var formatDecimalComma = d3.format(",.2f");
 
 const xsAnn = d3
