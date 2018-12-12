@@ -22,6 +22,8 @@
 		      href="https://cdn.jsdelivr.net/npm/bulma-divider@2.0.1/dist/css/bulma-divider.min.css" />
 		<link rel="stylesheet"
 		      href="css/analysis.css" />
+		<link href="https://unpkg.com/ionicons@4.4.8/dist/css/ionicons.min.css"
+		      rel="stylesheet">
 	</head>
 
 	<body>
@@ -65,17 +67,6 @@
 					<div class="line"></div>
 				</div>
 				<br /><br />
-				<div class="container columns"
-				     style="font-size: 20px;">
-					<div class="column is-2"></div>
-					<div class="column is-10">
-						<p>
-							Amongst variety of exoplants discovered till today, there are some
-							planets which are larger than our Jupiter and some tinier than our
-							Moon. So, Let's Exoplore the Largest and Smallest Exoplanets
-						</p>
-					</div>
-				</div>
 				<section class="section planets-near-me">
 					<div class="container">
 						<div class="square"></div>
@@ -152,7 +143,7 @@
 									<br>
 								</div>
 								<div id="planet-sim">
-				
+
 								</div>
 								<div id="system-info">
 									<span id="system-name"></span>
@@ -178,7 +169,7 @@
 							&nbsp;&nbsp;Some features directly or indirectly depend on one
 							another
 						</h2>
-				
+
 						<div class="graph-group columns">
 							<div class="graph-container column"
 							     id="corr-chart"></div>
@@ -215,7 +206,7 @@
 										   href="https://physics.stackexchange.com/questions/6771/star-surface-temperature-vs-mass">(src)</a>
 									</figcaption>
 								</figure>
-				
+
 								Metallicity is denoted by Z, for sun
 								<span class="highlight">Z = 0.02</span> which means 2% mass is
 								comprised of elements other than helium and hydrogen
@@ -426,18 +417,33 @@
 		</div>
 		<footer class="footer">
 			<div class="has-text-centered is-size-5">
-				Made with ❤️ by TK Vishal.
+				Made with <i class="icon ion-md-heart"></i> and <i class="icon ion-md-code"></i> by TK Vishal.
+				<br>
+				<a href="https://github.com/sanvishal"
+				   target="_blank">
+					<i class="icon ion-logo-github"></i>
+				</a>
+				<a href="https://twitter.com/Iamteeekay"
+				   target="_blank">
+					<i class="icon ion-logo-twitter"></i>
+				</a>
+				<a href="https://api.whatsapp.com/send?phone=918248795811"
+				   target="_blank">
+					<i class="icon ion-logo-whatsapp"></i>
+				</a>
+				<a href="https://www.instagram.com/tk_vishal/"
+				   target="_blank">
+					<i class="icon ion-logo-instagram"></i>
+				</a>
+				<a href="mailto:vishalsanthosh1999@gmail.com?subject=Hi&body=Hello there"><i class="icon ion-md-mail"></i></a>
 			</div>
 		</footer>
-
 		<script src="js/sketch.js"></script>
-
 		<script src="js/libs/d3.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-annotation/2.3.1/d3-annotation.min.js"></script>
 		<script src="js/planet-finder.js"></script>
 		<script src="js/size-chart.js"></script>
 		<script src="js/corr-chart.js"></script>
-		<script src="js/draw-system.js"></script>
 		<script src="js/libs/autocomplete.js"></script>
 		<script src="js/dist-chart.js"></script>
 	</body>
