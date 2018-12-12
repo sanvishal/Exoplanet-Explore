@@ -1,3 +1,5 @@
+var formatDecimalComma = d3.format(",.2f");
+
 var width = 800,
 	height = 800;
 
@@ -100,20 +102,30 @@ getZoomedCoords = function (W, H, center, w, h, margin) {
 	return d3.zoomIdentity.translate(x, y).scale(k);
 };
 
-//acData holds System names and System data holds System name with properties
 /*
+acData holds System names and System data holds System name with properties
 acData = [sysname1, sysnam2, sysname3, ....]
 SystemData = 
 {
 	sysname1: 
 	[
-	{key-value pairs of planet1 params and its name corresponding to that system},
-	{key-value pairs of planet2 params and its name corresponding to that system}
+	{key-value pairs of planet1 params and its name corresponding to sysname1},
+	{key-value pairs of planet2 params and its name corresponding to sysname1}
+	.....
+	],
+	sysname2:
+	[
+	{key-value pairs of planet1 params and its name corresponding to sysname2},
+	{key-value pairs of planet2 params and its name corresponding to sysname2}
 	.....
 	]
+	.
+	.
+	.
+	.
 }
 */
-var acData = []; var SystemData = []
+var acData = [], SystemData = []
 //read generated file by pandas python
 d3.csv("./cartesian-data/cart.csv", function (error, data) {
 	if (error) {

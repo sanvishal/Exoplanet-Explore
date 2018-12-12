@@ -4,34 +4,37 @@ var margin = { top: 20, right: 20, bottom: 50, left: 40 },
 
 var formatDecimalComma = d3.format(",.2f");
 
-const xsAnn = d3
+//setup scales for x and y axes
+var xsAnn = d3
 	.scaleLinear()
 	.domain([-0.973, 7])
-	.range([0, width]);
+	.range([0, width]),
 
-const ysAnn = d3
-	.scaleLinear()
-	.domain([-1, 31])
-	.range([height, 0]);
+	ysAnn = d3
+		.scaleLinear()
+		.domain([-1, 31])
+		.range([height, 0]);
 
-var xValue = function(d) {
-		return d["RadiusJpt"];
-	},
+//configure axes according to data
+var xValue = function (d) {
+	return d["RadiusJpt"];
+},
 	xScale = d3.scaleLinear().range([0, width]),
-	xMap = function(d) {
+	xMap = function (d) {
 		return xScale(xValue(d));
 	},
 	xAxis = d3.axisBottom(xScale).scale(xScale);
 
-var yValue = function(d) {
-		return d["PlanetaryMassJpt"];
-	},
+var yValue = function (d) {
+	return d["PlanetaryMassJpt"];
+},
 	yScale = d3.scaleLinear().range([height, 0]),
-	yMap = function(d) {
+	yMap = function (d) {
 		return yScale(yValue(d));
 	},
 	yAxis = d3.axisLeft(yScale).scale(yScale);
 
+//main SVG that hold the chart
 var svg = d3
 	.selectAll("#size-chart")
 	.select("svg")
@@ -40,6 +43,7 @@ var svg = d3
 	.append("g")
 	.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+//SVG group that holds the planet details
 let info_group = svg
 	.append("g")
 	.attr("class", "info-group")
@@ -72,6 +76,7 @@ let planet_info = info_group
 	.attr("font-size", 10)
 	.text("with 3000°C temperature");
 
+//that tiny circle that appears when you hover on planet
 var hover = svg
 	.append("g")
 	.attr("class", "hover-circle")
@@ -84,11 +89,12 @@ var hover = svg
 	.attr("fill", "none")
 	.attr("stroke-width", 3);
 
+//bunch of helper functions
 function normalize(val, max, min) {
 	return (val - min) / (max - min);
 }
 
-Number.prototype.map = function(in_min, in_max, out_min, out_max) {
+Number.prototype.map = function (in_min, in_max, out_min, out_max) {
 	return ((this - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min;
 };
 
@@ -96,28 +102,30 @@ function clamp(num, min, max) {
 	return num <= min ? min : num >= max ? max : num;
 }
 
-d3.csv("./size-data/planets.csv", function(error, data) {
+//read from custom CSV with planets sorted by radius
+d3.csv("./size-data/planets.csv", function (error, data) {
 	var smallest = data[2771];
+	//first 200 planets
 	data = data.slice(0, 200);
 	data.push(smallest);
-	data.forEach(function(d) {
+	//sanitize data from string to int
+	data.forEach(function (d) {
 		d["RadiusJpt"] = +d["RadiusJpt"];
 		d["PlanetaryMassJpt"] = Math.floor(+d["PlanetaryMassJpt"]);
 		d["SurfaceTempK"] = +d["SurfaceTempK"];
 	});
 	//console.log(max);
 	//console.log(data);
+
 	xScale.domain([d3.min(data, xValue) - 1, d3.max(data, xValue) + 1]);
 	yScale.domain([d3.min(data, yValue) - 1, d3.max(data, yValue) + 1]);
 
-	var cValue = function(d) {
-			return d["SurfaceTempK"];
-		},
-		color = d3
-			.scaleLinear()
-			.domain([0, 3060])
-			.interpolate(d3.interpolateHcl)
-			.range([d3.rgb("#007AFF"), d3.rgb("#d80833")]);
+	//color range that maps to temperature of planets, grey if temp data not avialable 
+	var color = d3
+		.scaleLinear()
+		.domain([0, 3060])
+		.interpolate(d3.interpolateHcl)
+		.range([d3.rgb("#007AFF"), d3.rgb("#d80833")]);
 
 	var xaxis = svg
 		.append("g")
@@ -130,6 +138,7 @@ d3.csv("./size-data/planets.csv", function(error, data) {
 		.attr("class", "y-axis")
 		.call(yAxis);
 
+	//append generated x and y axis to SVG
 	yaxis
 		.append("text")
 		.attr("y", 0)
@@ -141,7 +150,7 @@ d3.csv("./size-data/planets.csv", function(error, data) {
 	xaxis
 		.append("text")
 		.attr("class", "chart-stats-axis-note")
-		.attr("x", width / 2)
+		.attr("x", 1090 / 2)
 		.attr("y", 30)
 		.style("text-anchor", "middle")
 		.text("Planetary Radius(jpt)")
@@ -161,7 +170,7 @@ d3.csv("./size-data/planets.csv", function(error, data) {
 		.append("text")
 		.attr("class", "chart-xaxis-info")
 		.attr("y", 30)
-		.attr("x", width)
+		.attr("x", 1090)
 		.attr("text-anchor", "end")
 		.text("Bigger Planets")
 		.attr("font-size", 12);
@@ -172,6 +181,7 @@ d3.csv("./size-data/planets.csv", function(error, data) {
 
 	d3.selectAll("text").attr("fill", "#333333");
 
+	//Make planets with csv data
 	svg
 		.selectAll(".dot")
 		.data(data)
@@ -180,18 +190,18 @@ d3.csv("./size-data/planets.csv", function(error, data) {
 		.attr("class", "dot")
 		.attr("stroke-width", 0)
 		.attr("style", "fill: #d00; filter:url(#glow)")
-		.attr("stroke", function(d) {
+		.attr("stroke", function (d) {
 			//console.log(d);
 			return d["SurfaceTempK"] === 0 ? "#c5c1cc" : color(d["SurfaceTempK"]);
 		})
-		.attr("r", function(d) {
+		.attr("r", function (d) {
 			if (d["PlanetIdentifier"] !== "Kepler-37 b") {
 				return d["RadiusJpt"] * 3;
 			} else {
 				return 40;
 			}
 		})
-		.attr("opacity", function(d) {
+		.attr("opacity", function (d) {
 			if (d["PlanetIdentifier"] !== "Kepler-37 b") {
 				return d["SurfaceTempK"] === 0
 					? 0.5
@@ -202,13 +212,13 @@ d3.csv("./size-data/planets.csv", function(error, data) {
 		})
 		.attr("cx", xMap)
 		.attr("cy", yMap)
-		.style("fill", function(d) {
+		.style("fill", function (d) {
 			var temp = d["SurfaceTempK"];
 			return d["SurfaceTempK"] === 0
 				? "#c5c1cc"
 				: color(temp.map(0, 100, 0, 100));
 		})
-		.on("mouseover", function(d) {
+		.on("mouseover", function (d) {
 			info_group
 				.transition()
 				.duration(200)
@@ -218,23 +228,24 @@ d3.csv("./size-data/planets.csv", function(error, data) {
 				d.SurfaceTempK === 0
 					? "Temperature data not Avialable"
 					: "with " +
-							Math.round((d.SurfaceTempK - 273.15) * 100) / 100 +
-							"°C Surface Temperature"
+					Math.round((d.SurfaceTempK - 273.15) * 100) / 100 +
+					"°C Surface Temperature"
 			);
 			planet_info.text(
 				"Mass: " +
-					(+d["PlanetaryMassJpt"] === 0
-						? "data not avialable"
-						: formatDecimalComma(1.898e27 * +d["PlanetaryMassJpt"]) + "kg") +
-					"\u00A0\u00A0\u00A0\u00A0Radius: " +
-					(+d["RadiusJpt"] === 0
-						? "data not avialable"
-						: formatDecimalComma(69911 * +d["RadiusJpt"]) + "km")
+				(+d["PlanetaryMassJpt"] === 0
+					? "data not avialable"
+					: formatDecimalComma(1.898e27 * +d["PlanetaryMassJpt"]) + "kg") +
+				"\u00A0\u00A0\u00A0\u00A0Radius: " +
+				(+d["RadiusJpt"] === 0
+					? "data not avialable"
+					: formatDecimalComma(69911 * +d["RadiusJpt"]) + "km")
 			);
 			var mx = d3.select(this).attr("cx"),
 				my = d3.select(this).attr("cy"),
 				mr = d3.select(this).attr("r");
 
+			//mouse easing and hovering
 			d3.select(".hover-circle-item")
 				.style("opacity", 1)
 				.transition()
@@ -249,7 +260,7 @@ d3.csv("./size-data/planets.csv", function(error, data) {
 					d["PlanetIdentifier"] === "Kepler-37 b" ? +mr - 20 : +mr + 5
 				);
 		})
-		.on("mouseout", function(d) {
+		.on("mouseout", function (d) {
 			info_group
 				.transition()
 				.duration(500)
@@ -262,6 +273,7 @@ d3.csv("./size-data/planets.csv", function(error, data) {
 		});
 });
 
+//The annotation bubbles data
 const annotationData = [
 	{
 		className: "largest",
@@ -320,6 +332,7 @@ const annotationDataCustom = [
 	}
 ];
 
+//setup d3 annotation type
 const type = d3.annotationCustomType(d3.annotationCalloutCircle, {
 	className: "custom",
 	connector: { type: "elbow" },
@@ -329,6 +342,7 @@ const type = d3.annotationCustomType(d3.annotationCalloutCircle, {
 	}
 });
 
+//setup d3 annotation bubble
 const makeAnnotations = d3
 	.annotation()
 	.accessors({
@@ -346,6 +360,7 @@ const makeAnnotationsCustom = d3
 	})
 	.annotations(annotationDataCustom);
 
+//group all the annotations into a <g>
 svg
 	.append("g")
 	.attr("class", "annotation-group")
@@ -356,6 +371,7 @@ svg
 	.attr("class", "annotation-group")
 	.call(makeAnnotationsCustom);
 
+//Scale that tells about temperature gradiant
 var defs = d3.selectAll("defs");
 
 var gradientLegend = svg
@@ -405,7 +421,8 @@ gradientLegend
 	.attr("font-size", 10)
 	.text(d => d);
 
-window.onload = function() {
+//styling the annotation bubbles
+window.onload = function () {
 	d3.selectAll(".annotation-note-label").attr("fill", "grey");
 	d3.selectAll(".annotation-group")
 		.selectAll("path")

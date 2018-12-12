@@ -1,3 +1,5 @@
+//just a bunch of helper function to speed up analysis process in js
+
 var masterData, findPlanetByName;
 
 d3.csv("./given-data/oec.csv", function (error, data) {

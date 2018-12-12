@@ -4,7 +4,7 @@ import numpy as np
 
 planetData = pd.read_csv("original-data/planets.csv")
 # lots of missing data!!!!!!!!!!!!!!!
-# pprint(planetData.isnull().sum())
+#pprint(planetData.isnull().sum())
 print(" >> original data read...")
 
 features = ['PlanetaryMassJpt', 'RadiusJpt', 'PeriodDays', 'SemiMajorAxisAU', 'Eccentricity',

@@ -1,3 +1,5 @@
+//some p5.js fun while doing this project
+
 function System(
 	eccentricity,
 	orbitspeed,
@@ -55,11 +57,11 @@ function circ(x, y) {
 	this.x = x;
 	this.y = y;
 	this.a = 255;
-	this.exp = function(final, spd) {
+	this.exp = function (final, spd) {
 		this.r = lerp(this.r, final, spd);
 		this.a = lerp(this.a, 0, spd / 2);
 	};
-	this.draw = function() {
+	this.draw = function () {
 		noFill();
 		stroke(26, 0, 0, this.a / 6);
 		strokeWeight(7);
