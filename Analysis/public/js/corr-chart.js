@@ -181,13 +181,13 @@ function Matrix(options) {
 		throw new Error("It should be a 2-D array");
 	}
 
-	var maxValue = d3.max(data, function(layer) {
-		return d3.max(layer, function(d) {
+	var maxValue = d3.max(data, function (layer) {
+		return d3.max(layer, function (d) {
 			return d;
 		});
 	});
-	var minValue = d3.min(data, function(layer) {
-		return d3.min(layer, function(d) {
+	var minValue = d3.min(data, function (layer) {
+		return d3.min(layer, function (d) {
 			return d;
 		});
 	});
@@ -292,29 +292,29 @@ function Matrix(options) {
 		.enter()
 		.append("g")
 		.attr("class", "row")
-		.attr("transform", function(d, i) {
+		.attr("transform", function (d, i) {
 			return "translate(0," + y(i) + ")";
 		})
-		.attr("data-id", function(d, i) {
+		.attr("data-id", function (d, i) {
 			return i;
 		});
 
 	var cell = row
 		.selectAll(".cell")
-		.data(function(d) {
+		.data(function (d) {
 			return d;
 		})
 		.enter()
 		.append("g")
 		.attr("class", "cell")
-		.attr("transform", function(d, i) {
+		.attr("transform", function (d, i) {
 			var t = x(i);
 			return "translate(" + t + ", 0)";
 		})
-		.attr("data-id", function(d, i) {
+		.attr("data-id", function (d, i) {
 			return i;
 		})
-		.on("mouseover", function() {
+		.on("mouseover", function () {
 			var tthis = d3.select(this).attr("transform"),
 				translatethis = tthis
 					.substring(tthis.indexOf("(") + 1, tthis.indexOf(")"))
@@ -367,13 +367,13 @@ function Matrix(options) {
 			Scatter(dataParent, dataThis, scatterData);
 		});
 
-	cell.append("circle").attr("r", function(d) {
+	cell.append("circle").attr("r", function (d) {
 		return clamp((x.bandwidth() * d) / 1.5, 5, x.bandwidth() / 3);
 	});
 
 	row
 		.selectAll(".cell")
-		.data(function(d, i) {
+		.data(function (d, i) {
 			return data[i];
 		})
 		.style("fill", colorMap);
@@ -386,7 +386,7 @@ function Matrix(options) {
 		.enter()
 		.append("g")
 		.attr("class", "column-label")
-		.attr("transform", function(d, i) {
+		.attr("transform", function (d, i) {
 			return "translate(" + (x(i) - 16) + "," + (height - 16) + ")";
 		})
 		.style("fill", "grey")
@@ -410,7 +410,7 @@ function Matrix(options) {
 		.attr("dy", ".82em")
 		.attr("text-anchor", "end")
 		.attr("transform", "rotate(-60)")
-		.text(function(d, i) {
+		.text(function (d, i) {
 			return d;
 		});
 
@@ -420,7 +420,7 @@ function Matrix(options) {
 		.enter()
 		.append("g")
 		.attr("class", "row-label")
-		.attr("transform", function(d, i) {
+		.attr("transform", function (d, i) {
 			return "translate(" + "-16" + "," + (y(i) - 16) + ")";
 		})
 		.style("fill", "grey")
@@ -443,7 +443,7 @@ function Matrix(options) {
 		.attr("y", y.bandwidth() / 2)
 		.attr("dy", ".32em")
 		.attr("text-anchor", "end")
-		.text(function(d, i) {
+		.text(function (d, i) {
 			return d;
 		});
 }
@@ -479,10 +479,10 @@ function Scatter(col, row, scatterData) {
 	var colorMap = d3
 		.scaleLinear()
 		.domain([
-			d3.min(data, function(d) {
+			d3.min(data, function (d) {
 				return d[0];
 			}),
-			d3.max(data, function(d) {
+			d3.max(data, function (d) {
 				return d[0];
 			})
 		])
@@ -495,10 +495,10 @@ function Scatter(col, row, scatterData) {
 	var x = d3
 		.scaleLinear()
 		.domain([
-			d3.min(data, function(d) {
+			d3.min(data, function (d) {
 				return d[0];
 			}),
-			d3.max(data, function(d) {
+			d3.max(data, function (d) {
 				return d[0];
 			})
 		])
@@ -507,10 +507,10 @@ function Scatter(col, row, scatterData) {
 	var y = d3
 		.scaleLinear()
 		.domain([
-			d3.min(data, function(d) {
+			d3.min(data, function (d) {
 				return d[1];
 			}),
-			d3.max(data, function(d) {
+			d3.max(data, function (d) {
 				return d[1];
 			})
 		])
@@ -583,22 +583,27 @@ function Scatter(col, row, scatterData) {
 		.data(data)
 		.enter()
 		.append("circle")
-		.attr("cx", function(d, i) {
+		.attr("r", 3)
+		.attr("fill", function (d) {
+			return colorMap(d[0]);
+		})
+		.attr("cx", function (d, i) {
 			return x(d[0]);
 		})
-		.attr("cy", function(d) {
+		.attr("cy", height)
+		.transition().ease(d3.easeCubicInOut).duration(500)
+		.attr("cx", function (d, i) {
+			return x(d[0]);
+		})
+		.attr("cy", function (d) {
 			return y(d[1]);
 		})
-		.attr("r", 3)
-		.attr("fill", function(d) {
-			return colorMap(d[0]);
-		});
 }
 
 d3.queue()
 	.defer(d3.csv, "./corr-data/corr.csv")
 	.defer(d3.csv, "./corr-data/scatter.csv")
-	.await(function(err, corr, scatter) {
+	.await(function (err, corr, scatter) {
 		if (err) console.log(err);
 		/*for (let i = 0; i < corr.length; i++) {
 		var temp = [];
