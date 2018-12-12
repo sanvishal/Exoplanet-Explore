@@ -76,6 +76,191 @@
 						</p>
 					</div>
 				</div>
+				<section class="section planets-near-me">
+					<div class="container">
+						<div class="square"></div>
+						<h1 class="title title-text">Planets-Near-Me</h1>
+						<h2 class="subtitle">&nbsp;&nbsp;Near is a relative term</h2>
+						<div class="columns content text-body">
+							<div class="column is-2 side-text">
+								<figure class="image is-256x256">
+									<img src="img/prox.jpg" />
+									<figcaption class="caption">
+										Artist impression of Proxima Centarui b.
+										<a target="_blank"
+										   href="https://en.wikipedia.org/wiki/Proxima_Centauri_b#/media/File:Artist%E2%80%99s_impression_of_Proxima_Centauri_b_shown_hypothetically_as_an_arid_rocky_super-earth.jpg">(src)</a>
+									</figcaption>
+								</figure>
+								<figure class="image is-256x256">
+									<img src="img/grav.gif" />
+									<figcaption class="caption">
+										Moon is tidally/gravitaionally locked, that is why Moon
+										always shows its one side, while other side is always
+										hidden.
+										<a target="_blank"
+										   href="https://en.wikipedia.org/wiki/Tidal_locking#/media/File:Tidal_locking_of_the_Moon_with_the_Earth.gif">(src)</a>
+									</figcaption>
+								</figure>
+							</div>
+							<div class="column is-10 main-text">
+								<p>
+									In 2016, Kepler discovered a new Earth sized planet orbiting
+									the Proxima Centauri system named as
+									<span class="highlight">Proxima Centauri b</span>. It is just
+									a cosmic hop away from our solar system, which is about
+									<span class="highlight">1.295 parsecs</span>(4.2237251
+									lightyears). Its mass is at least 1.3 times that of Earth and
+									that it goes around its Host star every 11 Earth days. Proxima
+									Centauri b orbits in its star's habitable zone, meaning it's
+									at just the right distance to receive enough starlight to keep
+									water in its surface in liquid state. But this zone is
+									extremely close to the star. So it's likely that the planet
+									has become
+									<span class="highlight">gravitationally locked</span>. This
+									means that the same side of Proxima Centauri b always faces
+									its parent star, much like how the Moon always shows the same
+									side to Earth.
+								</p>
+								<p>
+									The poor planet recieves occasional solar flares from its
+									erupting parent star. On March 24 2017, two powerful solar
+									flares erupted in two minutes span and blasting Proxima
+									Centauri b with <span class="highlight">4000 times</span> more
+									radiation than Earth receives in a average major flare. Flares
+									like this would evaporate and tear down the atmosphere or
+									ocean. It would sterlize the surface, leaving no habitable
+									traces.
+								</p>
+							</div>
+						</div>
+						<div class="graph-group columns">
+							<div class="column is-4 has-text-centered">
+								<a class="button is-link loaders is-rounded reset is-center"
+								   onclick="reset()">Reset Zoom</a>
+								<br><br>
+								<div class="field has-addons">
+									<div class="control search-form">
+										<input class="input is-rounded planet-name-input is-info"
+										       type="text"
+										       placeholder="Planet Name"
+										       name="search">
+									</div>
+									<div class="control">
+										<a class="button is-link locate loaders"
+										   onclick="locate()">Locate 📌</a>
+									</div>
+									<br>
+								</div>
+								<div id="planet-sim">
+				
+								</div>
+								<div id="system-info">
+									<span id="system-name"></span>
+									<ul class="info-list">
+										<li id="planets-no"></li>
+										<li id="planets-list"></li>
+										<li id="hz"></li>
+										<li id="distance-sun"></li>
+										<li id="disc-method"></li>
+									</ul>
+								</div>
+							</div>
+							<div class="graph-container column"
+							     id="dist-chart"></div>
+						</div>
+					</div>
+				</section>
+				<section class="section interesting-features">
+					<div class="container">
+						<div class="square"></div>
+						<h1 class="title title-text">Correlation of Features</h1>
+						<h2 class="subtitle">
+							&nbsp;&nbsp;Some features directly or indirectly depend on one
+							another
+						</h2>
+				
+						<div class="graph-group columns">
+							<div class="graph-container column"
+							     id="corr-chart"></div>
+							<div class="column">
+								<div id="indicator"></div>
+								<svg id="scatter-chart"></svg>
+							</div>
+						</div>
+						<div class="container has-text-centered note note-spec column is-three-fifths"
+						     style="color: grey;">
+							<b>Note:</b> This is a Correlation Matrix graph, it provides a
+							visual relationship between different parameters in a heatmap.
+							Correlation is Positive when the values increase together, and
+							negative when one value decreases as the other increases.(only
+							some data has been used since provided dataset doesn't have much
+							parameters)
+						</div>
+						<div class="columns content text-body">
+							<div class="column is-2 side-text">
+								<figure class="image is-256x256">
+									<img src="img/kep.gif" />
+									<figcaption class="caption">
+										Kepler's Period law relationship
+										<a target="_blank"
+										   href="http://astronomyonline.org/Science/Orbits.asp">(src)</a>
+									</figcaption>
+								</figure>
+								<figure class="image is-256x256">
+									<img src="img/bolt.png" />
+									<figcaption class="caption">
+										Approximate boltzmann relation between star mass and
+										temperature
+										<a target="_blank"
+										   href="https://physics.stackexchange.com/questions/6771/star-surface-temperature-vs-mass">(src)</a>
+									</figcaption>
+								</figure>
+				
+								Metallicity is denoted by Z, for sun
+								<span class="highlight">Z = 0.02</span> which means 2% mass is
+								comprised of elements other than helium and hydrogen
+							</div>
+							<div class="column is-10 main-text">
+								<b>
+									<h4>Some key takeaways:</h4>
+								</b>
+								<ul class="takeaways">
+									<li class="ta">
+										High correlation between Orbital Period and semimajor
+										axis(<span class="highlight">98.59%</span>) as expected. As
+										given by Kepler's Period laws,
+										<em>The square of the period of any planet is proportional to
+											the cube of the semimajor axis of its orbit.</em>
+										It also explains about the Moderate Correlation between
+										Orbital period and Mass of planet.
+									</li>
+									<li class="ta">
+										High correlation between Host star mass and surface
+										temperature(<span class="highlight">98.59%</span>). These
+										params can be related using a
+										<span class="highlight">Hertzsprung–Russell diagram</span>.
+										It plots each star on a graph plotting the star's brightness
+										against its temperature. By calibrating the relationship
+										between them, mass of the main sequence star can be
+										obtained. But bigger stars require more complex procedures
+										and other different parameters for calculating mass.
+									</li>
+									<li class="ta">
+										Moderate correlation between Host star mass and radius since
+										density plays an important role on the mass too,
+										irrespective of the radius of star.
+									</li>
+									<li class="ta">
+										Moderate Negative correlation between star metallicity and
+										temperature. Since higher metallicity means more free
+										electrons. The lesser the temperature more the elctron
+										mobility. Hence more metallicty.
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</section>
 				<section class="section largest-text">
 					<div class="container">
 						<div class="square"></div>
@@ -232,193 +417,18 @@
 						</div>
 					</div>
 				</section>
-				<section class="section interesting-features">
-					<div class="container">
-						<div class="square"></div>
-						<h1 class="title title-text">Correlation of Features</h1>
-						<h2 class="subtitle">
-							&nbsp;&nbsp;Some features directly or indirectly depend on one
-							another
-						</h2>
-
-						<div class="graph-group columns">
-							<div class="graph-container column"
-							     id="corr-chart"></div>
-							<div class="column">
-								<div id="indicator"></div>
-								<svg id="scatter-chart"></svg>
-							</div>
-						</div>
-						<div class="container has-text-centered note note-spec column is-three-fifths"
-						     style="color: grey;">
-							<b>Note:</b> This is a Correlation Matrix graph, it provides a
-							visual relationship between different parameters in a heatmap.
-							Correlation is Positive when the values increase together, and
-							negative when one value decreases as the other increases.(only
-							some data has been used since provided dataset doesn't have much
-							parameters)
-						</div>
-						<div class="columns content text-body">
-							<div class="column is-2 side-text">
-								<figure class="image is-256x256">
-									<img src="img/kep.gif" />
-									<figcaption class="caption">
-										Kepler's Period law relationship
-										<a target="_blank"
-										   href="http://astronomyonline.org/Science/Orbits.asp">(src)</a>
-									</figcaption>
-								</figure>
-								<figure class="image is-256x256">
-									<img src="img/bolt.png" />
-									<figcaption class="caption">
-										Approximate boltzmann relation between star mass and
-										temperature
-										<a target="_blank"
-										   href="https://physics.stackexchange.com/questions/6771/star-surface-temperature-vs-mass">(src)</a>
-									</figcaption>
-								</figure>
-
-								Metallicity is denoted by Z, for sun
-								<span class="highlight">Z = 0.02</span> which means 2% mass is
-								comprised of elements other than helium and hydrogen
-							</div>
-							<div class="column is-10 main-text">
-								<b>
-									<h4>Some key takeaways:</h4>
-								</b>
-								<ul class="takeaways">
-									<li class="ta">
-										High correlation between Orbital Period and semimajor
-										axis(<span class="highlight">98.59%</span>) as expected. As
-										given by Kepler's Period laws,
-										<em>The square of the period of any planet is proportional to
-											the cube of the semimajor axis of its orbit.</em>
-										It also explains about the Moderate Correlation between
-										Orbital period and Mass of planet.
-									</li>
-									<li class="ta">
-										High correlation between Host star mass and surface
-										temperature(<span class="highlight">98.59%</span>). These
-										params can be related using a
-										<span class="highlight">Hertzsprung–Russell diagram</span>.
-										It plots each star on a graph plotting the star's brightness
-										against its temperature. By calibrating the relationship
-										between them, mass of the main sequence star can be
-										obtained. But bigger stars require more complex procedures
-										and other different parameters for calculating mass.
-									</li>
-									<li class="ta">
-										Moderate correlation between Host star mass and radius since
-										density plays an important role on the mass too,
-										irrespective of the radius of star.
-									</li>
-									<li class="ta">
-										Moderate Negative correlation between star metallicity and
-										temperature. Since higher metallicity means more free
-										electrons. The lesser the temperature more the elctron
-										mobility. Hence more metallicty.
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</section>
-				<section class="section planets-near-me">
-					<div class="container">
-						<div class="square"></div>
-						<h1 class="title title-text">Planets-Near-Me</h1>
-						<h2 class="subtitle">&nbsp;&nbsp;Near is a relative term</h2>
-						<div class="columns content text-body">
-							<div class="column is-2 side-text">
-								<figure class="image is-256x256">
-									<img src="img/prox.jpg" />
-									<figcaption class="caption">
-										Artist impression of Proxima Centarui b.
-										<a target="_blank"
-										   href="https://en.wikipedia.org/wiki/Proxima_Centauri_b#/media/File:Artist%E2%80%99s_impression_of_Proxima_Centauri_b_shown_hypothetically_as_an_arid_rocky_super-earth.jpg">(src)</a>
-									</figcaption>
-								</figure>
-								<figure class="image is-256x256">
-									<img src="img/grav.gif" />
-									<figcaption class="caption">
-										Moon is tidally/gravitaionally locked, that is why Moon
-										always shows its one side, while other side is always
-										hidden.
-										<a target="_blank"
-										   href="https://en.wikipedia.org/wiki/Tidal_locking#/media/File:Tidal_locking_of_the_Moon_with_the_Earth.gif">(src)</a>
-									</figcaption>
-								</figure>
-							</div>
-							<div class="column is-10 main-text">
-								<p>
-									In 2016, Kepler discovered a new Earth sized planet orbiting
-									the Proxima Centauri system named as
-									<span class="highlight">Proxima Centauri b</span>. It is just
-									a cosmic hop away from our solar system, which is about
-									<span class="highlight">1.295 parsecs</span>(4.2237251
-									lightyears). Its mass is at least 1.3 times that of Earth and
-									that it goes around its Host star every 11 Earth days. Proxima
-									Centauri b orbits in its star's habitable zone, meaning it's
-									at just the right distance to receive enough starlight to keep
-									water in its surface in liquid state. But this zone is
-									extremely close to the star. So it's likely that the planet
-									has become
-									<span class="highlight">gravitationally locked</span>. This
-									means that the same side of Proxima Centauri b always faces
-									its parent star, much like how the Moon always shows the same
-									side to Earth.
-								</p>
-								<p>
-									The poor planet recieves occasional solar flares from its
-									erupting parent star. On March 24 2017, two powerful solar
-									flares erupted in two minutes span and blasting Proxima
-									Centauri b with <span class="highlight">4000 times</span> more
-									radiation than Earth receives in a average major flare. Flares
-									like this would evaporate and tear down the atmosphere or
-									ocean. It would sterlize the surface, leaving no habitable
-									traces.
-								</p>
-							</div>
-						</div>
-						<div class="graph-group columns">
-							<div class="column is-4 has-text-centered">
-								<a class="button is-link loaders is-rounded reset is-center"
-								   onclick="reset()">Reset Zoom</a>
-								<br><br>
-								<div class="field has-addons">
-									<div class="control search-form">
-										<input class="input is-rounded planet-name-input is-info"
-										       type="text"
-										       placeholder="Planet Name"
-										       name="search">
-									</div>
-									<div class="control">
-										<a class="button is-link locate loaders"
-										   onclick="locate()">Locate 📌</a>
-									</div>
-									<br>
-								</div>
-								<div id="planet-sim">
-
-								</div>
-								<div id="system-info">
-									<span id="system-name"></span>
-									<ul class="info-list">
-										<li id="planets-no"></li>
-										<li id="planets-list"></li>
-										<li id="hz"></li>
-										<li id="distance-sun"></li>
-										<li id="disc-method"></li>
-									</ul>
-								</div>
-							</div>
-							<div class="graph-container column"
-							     id="dist-chart"></div>
-						</div>
-					</div>
-				</section>
 			</div>
 		</main>
+		<div class="divider">
+			<div class="line"></div>
+			<div class="circle"></div>
+			<div class="line"></div>
+		</div>
+		<footer class="footer">
+			<div class="has-text-centered is-size-5">
+				Made with ❤️ by TK Vishal.
+			</div>
+		</footer>
 
 		<script src="js/sketch.js"></script>
 

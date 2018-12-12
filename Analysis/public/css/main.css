@@ -187,3 +187,7 @@ body {
 	opacity: 0;
 	transition: all 0.5s;
 }
+
+.footer {
+	background-color: #ffffff !important;
+}
