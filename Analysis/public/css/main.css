@@ -191,3 +191,43 @@ body {
 .footer {
 	background-color: #ffffff !important;
 }
+
+.social-main {
+	color: #333333;
+	opacity: 0.8;
+}
+
+blockquote {
+	font-family: "Josefin Sans", sans-serif;
+	font-size: 20px;
+	font-style: italic;
+	width: 80%;
+	margin: 0.25em auto !important;
+	padding: 0.35em 40px !important;
+	line-height: 1.45 !important;
+	position: relative;
+	color: #383838;
+}
+
+blockquote:before {
+	font-family: Georgia, serif;
+	display: block;
+	padding-left: 10px !important;
+	content: "\201C";
+	font-size: 100px;
+	position: absolute;
+	left: -20px;
+	top: -45px;
+	color: #7a7a7a;
+}
+
+blockquote cite {
+	color: #999999;
+	font-size: 14px;
+	display: block;
+	margin-top: 5px;
+}
+ 
+blockquote cite:before {
+	content: "\2014 \2009";
+}
