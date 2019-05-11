@@ -3,231 +3,241 @@
 @import url("https://fonts.googleapis.com/css?family=Lato");
 
 body {
-	margin: 0;
-	padding: 0;
-	color: #333333;
+  margin: 0;
+  padding: 0;
+  color: #333333;
 }
 
 .header > .title {
-	font-family: "Josefin Sans", sans-serif;
-	font-size: 45px;
-	text-align: center;
-	margin-top: 30px;
-	letter-spacing: 4px;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 45px;
+  text-align: center;
+  margin-top: 30px;
+  letter-spacing: 4px;
 }
 
 .logo > img {
-	max-width: 100px;
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
+  max-width: 100px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .divider {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	padding-top: 15px;
-	width: 80%;
-	height: 10px;
-	clear: both;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 15px;
+  width: 80%;
+  height: 10px;
+  clear: both;
 }
 
 .line:nth-child(1) {
-	float: left;
-	width: 45%;
-	height: 0.6px;
-	background-color: gray;
-	border-radius: 50%;
-	margin-top: 4px;
+  float: left;
+  width: 45%;
+  height: 0.6px;
+  background-color: gray;
+  border-radius: 50%;
+  margin-top: 4px;
 }
 
 .line:nth-child(3) {
-	float: right;
-	width: 45%;
-	height: 0.6px;
-	background-color: grey;
-	border-radius: 50%;
-	margin-left: auto;
-	margin-top: 4px;
+  float: right;
+  width: 45%;
+  height: 0.6px;
+  background-color: grey;
+  border-radius: 50%;
+  margin-left: auto;
+  margin-top: 4px;
 }
 
 .circle {
-	float: left;
-	margin-left: auto;
-	margin-right: auto;
-	width: 10px;
-	height: 10px;
-	border-radius: 10px;
-	left: 4%;
-	border: 1px solid grey;
-	position: relative;
-	top: -30%;
+  float: left;
+  margin-left: auto;
+  margin-right: auto;
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+  left: 4%;
+  border: 1px solid grey;
+  position: relative;
+  top: -30%;
 }
 
 .wrap {
-	width: 80%;
-	height: 90vh;
-	display: flex;
-	margin-left: auto;
-	margin-right: auto;
+  width: 80%;
+  height: 90vh;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .wrap > .details {
-	flex: 2 0 0;
-	align-self: center;
-	margin-top: -25%;
+  flex: 2 0 0;
+  align-self: center;
+  margin-top: -25%;
 }
 
 .wrap > .details > .name {
-	font-family: "lato";
-	font-weight: 700;
-	font-size: 50px;
-	letter-spacing: 2px;
+  font-family: "lato";
+  font-weight: 700;
+  font-size: 50px;
+  letter-spacing: 2px;
 }
 
 .wrap > .details > .info {
-	font-family: "lato";
-	font-size: 25px;
+  font-family: "lato";
+  font-size: 25px;
 }
 
 .wrap > .canvas-p5 {
-	flex: 3 0 0;
-	margin-left: 100px;
+  flex: 3 0 0;
+  margin-left: 100px;
 }
 
 .explore-btn {
-	border: 4px solid #333333 !important;
-	background: none;
-	border-radius: 8px;
-	/*padding: 15px 32px !important;*/
-	text-align: center !important;
-	text-decoration: none;
-	display: inline-block !important;
-	height: 60px !important;
-	width: 250px;
-	font-family: "lato";
-	font-size: 20px !important;
-	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.19), 0 3px 5px rgba(0, 0, 0, 0.24) !important;
-	transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border: 4px solid #333333 !important;
+  background: none;
+  border-radius: 8px;
+  /*padding: 15px 32px !important;*/
+  text-align: center !important;
+  text-decoration: none;
+  display: inline-block !important;
+  height: 60px !important;
+  width: 250px;
+  font-family: "lato";
+  font-size: 20px !important;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.19), 0 3px 5px rgba(0, 0, 0, 0.24) !important;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .explore-btn:hover {
-	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22) !important;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22) !important;
 }
 
 #vis-bg {
-	margin-top: 60px;
-	width: 500px;
-	height: 70%;
-	position: absolute;
-	background: #333333;
-	border-radius: 25px;
-	z-index: -1;
-	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  margin-top: 60px;
+  width: 500px;
+  height: 70%;
+  position: absolute;
+  background: #333333;
+  border-radius: 25px;
+  z-index: -1;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
 #vis {
-	margin-left: 66px;
-	margin-top: 200px;
-	border-radius: 30px;
-	overflow: hidden;
-	-webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC); /* this fixes the overflow:hidden in Chrome/Opera */
+  margin-left: 66px;
+  margin-top: 200px;
+  border-radius: 30px;
+  overflow: hidden;
+  -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC); /* this fixes the overflow:hidden in Chrome/Opera */
 }
 
 .planet-details {
-	padding-top: 35px;
-	padding-left: 100px;
-	letter-spacing: 2px;
-	font-size: 20px;
-	font-family: "lato";
-	color: #ffffff;
+  padding-top: 35px;
+  padding-left: 100px;
+  letter-spacing: 2px;
+  font-size: 20px;
+  font-family: "lato";
+  color: #ffffff;
 }
 
 .autocomplete-suggestions {
-	text-align: center;
-	cursor: default;
-	border-top: 0;
-	background: #fff;
-	border-radius: 10px;
-	position: absolute;
-	display: none;
-	z-index: 9999;
-	max-height: 254px;
-	overflow: hidden;
-	overflow-y: auto;
-	box-sizing: border-box;
-	transition: all 0.5s;
+  text-align: center;
+  cursor: default;
+  border-top: 0;
+  background: #fff;
+  border-radius: 10px;
+  position: absolute;
+  display: none;
+  z-index: 9999;
+  max-height: 254px;
+  overflow: hidden;
+  overflow-y: auto;
+  box-sizing: border-box;
+  transition: all 0.5s;
 }
 .autocomplete-suggestion {
-	position: relative;
-	padding: 0 0.6em;
-	line-height: 23px;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	font-size: 1.02em;
-	color: #333;
+  position: relative;
+  padding: 0 0.6em;
+  line-height: 23px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 1.02em;
+  color: #333;
 }
 .autocomplete-suggestion b {
-	font-weight: normal;
-	color: #de2f53;
+  font-weight: normal;
+  color: #de2f53;
 }
 .autocomplete-suggestion.selected {
-	background: #f0f0f0;
+  background: #f0f0f0;
 }
 
 .autocomplete-suggestions::-webkit-scrollbar {
-	width: 10px;
-	opacity: 0;
+  width: 10px;
+  opacity: 0;
 }
 
 .autocomplete-suggestions::-webkit-scrollbar-thumb {
-	background: #888;
-	opacity: 0;
-	transition: all 0.5s;
+  background: #888;
+  opacity: 0;
+  transition: all 0.5s;
 }
 
 .footer {
-	background-color: #ffffff !important;
+  background-color: #ffffff !important;
 }
 
 .social-main {
-	color: #333333;
-	opacity: 0.8;
+  color: #333333;
+  opacity: 0.8;
 }
 
 blockquote {
-	font-family: "Josefin Sans", sans-serif;
-	font-size: 20px;
-	font-style: italic;
-	width: 80%;
-	margin: 0.25em auto !important;
-	padding: 0.35em 40px !important;
-	line-height: 1.45 !important;
-	position: relative;
-	color: #383838;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 20px;
+  font-style: italic;
+  width: 80%;
+  margin: 0.25em auto !important;
+  padding: 0.35em 40px !important;
+  line-height: 1.45 !important;
+  position: relative;
+  color: #383838;
 }
 
 blockquote:before {
-	font-family: Georgia, serif;
-	display: block;
-	padding-left: 10px !important;
-	content: "\201C";
-	font-size: 100px;
-	position: absolute;
-	left: -20px;
-	top: -45px;
-	color: #7a7a7a;
+  font-family: Georgia, serif;
+  display: block;
+  padding-left: 10px !important;
+  content: "\201C";
+  font-size: 100px;
+  position: absolute;
+  left: -20px;
+  top: -45px;
+  color: #7a7a7a;
 }
 
 blockquote cite {
-	color: #999999;
-	font-size: 14px;
-	display: block;
-	margin-top: 5px;
+  color: #999999;
+  font-size: 14px;
+  display: block;
+  margin-top: 5px;
 }
- 
+
 blockquote cite:before {
-	content: "\2014 \2009";
+  content: "\2014 \2009";
+}
+
+.social > a {
+  color: gray;
+}
+
+@media only screen and (max-width: 760px) {
+  #testing-for-mobile {
+    display: none;
+  }
 }

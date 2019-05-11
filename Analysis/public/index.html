@@ -1,505 +1,576 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <meta
+      name="description"
+      content="An interactive data visualisation about Exoplanets by TK Vishal"
+	/>
+	<meta name = "keywords" content = "exoplanet,exoplanets,exoplanet exploration,trappist,extrasolar planets,space,aliens,nasa,data visualisation,dataviz"/>
+    <title>Exoplanets Explore</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-135026946-1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible"
-		      content="ie=edge" />
-		<title>Exoplanets Explore</title>
-		<!-- Global site tag (gtag.js) - Google Analytics -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-135026946-1"></script>
-		<script>
-			window.dataLayer = window.dataLayer || [];
-			function gtag() { dataLayer.push(arguments); }
-			gtag('js', new Date());
+      gtag("config", "UA-135026946-1");
+    </script>
+    <link rel="shortcut icon" type="image/png" href="img/exoplanet.png" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:700"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.min.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/bulma.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma-divider@2.0.1/dist/css/bulma-divider.min.css"
+    />
+    <link rel="stylesheet" href="css/analysis.css" />
+    <link
+      href="https://unpkg.com/ionicons@4.4.8/dist/css/ionicons.min.css"
+      rel="stylesheet"
+    />
+    <meta name="theme-color" content="#333333">
+  </head>
 
-			gtag('config', 'UA-135026946-1');
-		</script>
-		<link rel="shortcut icon"
-		      type="image/png"
-		      href="img/exoplanet.png" />
-		<link rel="stylesheet"
-		      href="css/main.css" />
-		<link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:700"
-		      rel="stylesheet" />
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.min.js"></script>
-		<link href="https://fonts.googleapis.com/css?family=Lato"
-		      rel="stylesheet" />
-		<link rel="stylesheet"
-		      href="css/bulma.css" />
-		<link rel="stylesheet"
-		      href="https://cdn.jsdelivr.net/npm/bulma-divider@2.0.1/dist/css/bulma-divider.min.css" />
-		<link rel="stylesheet"
-		      href="css/analysis.css" />
-		<link href="https://unpkg.com/ionicons@4.4.8/dist/css/ionicons.min.css"
-		      rel="stylesheet">
-	</head>
+  <body>
+    <div id = "testing-for-mobile"></div>
+    <div class="header">
+      <div class="title">EXOPLANET EXPLORE</div>
+      <div class="logo"><img src="img/exoplanet.png" /></div>
+    </div>
+    <div class="divider">
+      <div class="line"></div>
+      <div class="circle"></div>
+      <div class="line"></div>
+    </div>
+    <main class="wrap">
+      <div class="details">
+        <div class="name">Exoplanet Explore</div>
+        <div class="info">An Analysis report on Exoplanets</div>
+        <div class="is-size-6 social social-main" style="color:grey;">
+          Made with <i class="icon ion-md-heart"></i> and
+          <i class="icon ion-md-code"></i> by <a href="https://tkvishal.now.sh" target="_blank"><b><u>TK Vishal</b></u></a>.
+          <br />
+          <a href="https://github.com/sanvishal" target="_blank">
+            <i class="icon ion-logo-github"></i>
+          </a>
+          <a href="https://twitter.com/Iamteeekay" target="_blank">
+            <i class="icon ion-logo-twitter"></i>
+          </a>
+          <a
+            href="https://api.whatsapp.com/send?phone=918248795811"
+            target="_blank"
+          >
+            <i class="icon ion-logo-whatsapp"></i>
+          </a>
+          <a href="https://www.instagram.com/tk_vishal/" target="_blank">
+            <i class="icon ion-logo-instagram"></i>
+          </a>
+          <a
+            href="mailto:vishalsanthosh1999@gmail.com?subject=Hi&body=Hello there"
+            ><i class="icon ion-md-mail"></i
+          ></a>
+        </div>
+        <br />
+        <div class="button-holder">
+          <a href="#analysis"
+            ><input
+              type="button"
+              class="button explore-btn"
+              value="The Analysis"
+          /></a>
+        </div>
+      </div>
+      <div class="canvas-p5">
+        <div id="vis-bg">
+          <ul type="disc" class="planet-details">
+            <li>Planet Name: <b>CoRoT-7 b</b></li>
+            <li>Discovery Method: <b>Transit</b></li>
+          </ul>
+        </div>
+        <div id="vis"></div>
+      </div>
+    </main>
+    <main class="wrap-analysis">
+      <div class="analysis" id="analysis">
+        <div class="divider">
+          <div class="line"></div>
+          <div class="circle"></div>
+          <div class="line"></div>
+        </div>
+        <br /><br />
+        <section class="section planets-near-me">
+          <div class="container">
+            <div class="square"></div>
+            <h1 class="title title-text">Planets-Near-Me</h1>
+            <h2 class="subtitle">&nbsp;&nbsp;Near is a relative term</h2>
+            <div class="columns content text-body">
+              <div class="column is-2 side-text">
+                <figure class="image is-256x256">
+                  <img src="img/prox.jpg" />
+                  <figcaption class="caption">
+                    Artist impression of Proxima Centarui b.
+                    <a
+                      target="_blank"
+                      href="https://en.wikipedia.org/wiki/Proxima_Centauri_b#/media/File:Artist%E2%80%99s_impression_of_Proxima_Centauri_b_shown_hypothetically_as_an_arid_rocky_super-earth.jpg"
+                      >(src)</a
+                    >
+                  </figcaption>
+                </figure>
+                <figure class="image is-256x256">
+                  <img src="img/grav.gif" />
+                  <figcaption class="caption">
+                    Moon is tidally/gravitaionally locked, that is why Moon
+                    always shows its one side, while other side is always
+                    hidden.
+                    <a
+                      target="_blank"
+                      href="https://en.wikipedia.org/wiki/Tidal_locking#/media/File:Tidal_locking_of_the_Moon_with_the_Earth.gif"
+                      >(src)</a
+                    >
+                  </figcaption>
+                </figure>
+              </div>
+              <div class="column is-10 main-text">
+                <p>
+                  In 2016, Kepler discovered a new Earth sized planet orbiting
+                  the Proxima Centauri system named as
+                  <span class="highlight">Proxima Centauri b</span>. It is just
+                  a cosmic hop away from our solar system, which is about
+                  <span class="highlight">1.295 parsecs</span>(4.2237251
+                  lightyears). Its mass is at least 1.3 times that of Earth and
+                  that it goes around its Host star every 11 Earth days. Proxima
+                  Centauri b orbits in its star's habitable zone, meaning it's
+                  at just the right distance to receive enough starlight to keep
+                  water in its surface in liquid state. But this zone is
+                  extremely close to the star. So it's likely that the planet
+                  has become
+                  <span class="highlight">gravitationally locked</span>. This
+                  means that the same side of Proxima Centauri b always faces
+                  its parent star, much like how the Moon always shows the same
+                  side to Earth.
+                </p>
+                <p>
+                  The poor planet recieves occasional solar flares from its
+                  erupting parent star. On March 24 2017, two powerful solar
+                  flares erupted in two minutes span and blasting Proxima
+                  Centauri b with <span class="highlight">4000 times</span> more
+                  radiation than Earth receives in a average major flare. Flares
+                  like this would evaporate and tear down the atmosphere or
+                  ocean. It would sterlize the surface, leaving no habitable
+                  traces.
+                </p>
+              </div>
+            </div>
+            <div class="graph-group columns">
+              <div class="column is-4 has-text-centered">
+                <a
+                  class="button is-link loaders is-rounded reset is-center"
+                  onclick="reset()"
+                  >Reset Zoom</a
+                >
+                <br /><br />
+                <div class="field has-addons">
+                  <div class="control search-form">
+                    <input
+                      class="input is-rounded planet-name-input is-info"
+                      type="text"
+                      placeholder="Planet Name"
+                      name="search"
+                    />
+                  </div>
+                  <div class="control">
+                    <a class="button is-link locate loaders" onclick="locate()"
+                      >Locate 📌</a
+                    >
+                  </div>
+                  <br />
+                </div>
+                <div id="planet-sim"></div>
+                <div id="system-info">
+                  <span id="system-name"></span>
+                  <ul class="info-list">
+                    <li id="planets-no"></li>
+                    <li id="planets-list"></li>
+                    <li id="hz"></li>
+                    <li id="distance-sun"></li>
+                    <li id="disc-method"></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="graph-container column" id="dist-chart"></div>
+            </div>
+            <div
+              class="container has-text-centered note note-spec column is-10"
+              style="color: grey;"
+            >
+              <b
+                >Note: (<i class="icon ion-md-alert"></i> This graph is
+                hoverable and interactive, move your mouse in and see)</b
+              >
+              This visualization provides a better way to know positions of
+              Exoplanet Systems with respect to solar system on a x-y plane with
+              solar-system as origin. Since this is an orthogonal projection,
+              the radius of each node is directly proportional to absolute value
+              of z-coordinate value of the system(J2000 to cartesian coordinates
+              are converted by using simple trigonometric transformations, see
+              source code for more info). The Habitable zones are mostly
+              accurate, if you notice any incorrect visualization it might be
+              beacuse of missing data. The habitabe zone is calculated using
+              <a
+                href="http://www.planetarybiology.com/calculating_habitable_zone.html"
+                target="_blank"
+                >formula</a
+              >.
+            </div>
+          </div>
+        </section>
+        <section class="section interesting-features">
+          <div class="container">
+            <div class="square"></div>
+            <h1 class="title title-text">Correlation of Features</h1>
+            <h2 class="subtitle">
+              &nbsp;&nbsp;Some features directly or indirectly depend on one
+              another
+            </h2>
 
-	<body>
-		<div class="header">
-			<div class="title">EXOPLANET EXPLORE</div>
-			<div class="logo"><img src="img/exoplanet.png" /></div>
-		</div>
-		<div class="divider">
-			<div class="line"></div>
-			<div class="circle"></div>
-			<div class="line"></div>
-		</div>
-		<main class="wrap">
-			<div class="details">
-				<div class="name">Exoplanet Explore</div>
-				<div class="info">An Analysis report on Exoplanets</div>
-				<div class="is-size-6 social social-main"
-				     style="color:grey;">
-					Made with <i class="icon ion-md-heart"></i> and <i class="icon ion-md-code"></i> by TK Vishal.
-					<br>
-					<a href="https://github.com/sanvishal"
-					   target="_blank">
-						<i class="icon ion-logo-github"></i>
-					</a>
-					<a href="https://twitter.com/Iamteeekay"
-					   target="_blank">
-						<i class="icon ion-logo-twitter"></i>
-					</a>
-					<a href="https://api.whatsapp.com/send?phone=918248795811"
-					   target="_blank">
-						<i class="icon ion-logo-whatsapp"></i>
-					</a>
-					<a href="https://www.instagram.com/tk_vishal/"
-					   target="_blank">
-						<i class="icon ion-logo-instagram"></i>
-					</a>
-					<a href="mailto:vishalsanthosh1999@gmail.com?subject=Hi&body=Hello there"><i class="icon ion-md-mail"></i></a>
-				</div>
-				<br />
-				<div class="button-holder">
-					<a href="#analysis"><input type="button"
-						       class="button explore-btn"
-						       value="The Analysis" /></a>
-				</div>
-			</div>
-			<div class="canvas-p5">
-				<div id="vis-bg">
-					<ul type="disc"
-					    class="planet-details">
-						<li>Planet Name: <b>CoRoT-7 b</b></li>
-						<li>Discovery Method: <b>Transit</b></li>
-					</ul>
-				</div>
-				<div id="vis"></div>
-			</div>
-		</main>
-		<main class="wrap-analysis">
-			<div class="analysis"
-			     id="analysis">
-				<div class="divider">
-					<div class="line"></div>
-					<div class="circle"></div>
-					<div class="line"></div>
-				</div>
-				<br /><br />
-				<section class="section planets-near-me">
-					<div class="container">
-						<div class="square"></div>
-						<h1 class="title title-text">Planets-Near-Me</h1>
-						<h2 class="subtitle">&nbsp;&nbsp;Near is a relative term</h2>
-						<div class="columns content text-body">
-							<div class="column is-2 side-text">
-								<figure class="image is-256x256">
-									<img src="img/prox.jpg" />
-									<figcaption class="caption">
-										Artist impression of Proxima Centarui b.
-										<a target="_blank"
-										   href="https://en.wikipedia.org/wiki/Proxima_Centauri_b#/media/File:Artist%E2%80%99s_impression_of_Proxima_Centauri_b_shown_hypothetically_as_an_arid_rocky_super-earth.jpg">(src)</a>
-									</figcaption>
-								</figure>
-								<figure class="image is-256x256">
-									<img src="img/grav.gif" />
-									<figcaption class="caption">
-										Moon is tidally/gravitaionally locked, that is why Moon
-										always shows its one side, while other side is always
-										hidden.
-										<a target="_blank"
-										   href="https://en.wikipedia.org/wiki/Tidal_locking#/media/File:Tidal_locking_of_the_Moon_with_the_Earth.gif">(src)</a>
-									</figcaption>
-								</figure>
-							</div>
-							<div class="column is-10 main-text">
-								<p>
-									In 2016, Kepler discovered a new Earth sized planet orbiting
-									the Proxima Centauri system named as
-									<span class="highlight">Proxima Centauri b</span>. It is just
-									a cosmic hop away from our solar system, which is about
-									<span class="highlight">1.295 parsecs</span>(4.2237251
-									lightyears). Its mass is at least 1.3 times that of Earth and
-									that it goes around its Host star every 11 Earth days. Proxima
-									Centauri b orbits in its star's habitable zone, meaning it's
-									at just the right distance to receive enough starlight to keep
-									water in its surface in liquid state. But this zone is
-									extremely close to the star. So it's likely that the planet
-									has become
-									<span class="highlight">gravitationally locked</span>. This
-									means that the same side of Proxima Centauri b always faces
-									its parent star, much like how the Moon always shows the same
-									side to Earth.
-								</p>
-								<p>
-									The poor planet recieves occasional solar flares from its
-									erupting parent star. On March 24 2017, two powerful solar
-									flares erupted in two minutes span and blasting Proxima
-									Centauri b with <span class="highlight">4000 times</span> more
-									radiation than Earth receives in a average major flare. Flares
-									like this would evaporate and tear down the atmosphere or
-									ocean. It would sterlize the surface, leaving no habitable
-									traces.
-								</p>
-							</div>
-						</div>
-						<div class="graph-group columns">
-							<div class="column is-4 has-text-centered">
-								<a class="button is-link loaders is-rounded reset is-center"
-								   onclick="reset()">Reset Zoom</a>
-								<br><br>
-								<div class="field has-addons">
-									<div class="control search-form">
-										<input class="input is-rounded planet-name-input is-info"
-										       type="text"
-										       placeholder="Planet Name"
-										       name="search">
-									</div>
-									<div class="control">
-										<a class="button is-link locate loaders"
-										   onclick="locate()">Locate 📌</a>
-									</div>
-									<br>
-								</div>
-								<div id="planet-sim">
+            <div class="graph-group columns">
+              <div class="graph-container column" id="corr-chart"></div>
+              <div class="column">
+                <div id="indicator"></div>
+                <svg id="scatter-chart"></svg>
+              </div>
+            </div>
+            <div
+              class="container has-text-centered note note-spec column is-10"
+              style="color: grey;"
+            >
+              <b
+                >Note: (<i class="icon ion-md-alert"></i> This graph is
+                hoverable and interactive, move your mouse in and see)</b
+              >
+              This is a Correlation Matrix graph, it provides a visual
+              relationship between different parameters in a heatmap.
+              Correlation is Positive when the values increase together, and
+              negative when one value decreases as the other increases.(only
+              some data has been used since provided dataset doesn't have much
+              parameters)
+            </div>
+            <div class="columns content text-body">
+              <div class="column is-2 side-text">
+                <figure class="image is-256x256">
+                  <img src="img/kep.gif" />
+                  <figcaption class="caption">
+                    Kepler's Period law relationship
+                    <a
+                      target="_blank"
+                      href="http://astronomyonline.org/Science/Orbits.asp"
+                      >(src)</a
+                    >
+                  </figcaption>
+                </figure>
+                <figure class="image is-256x256">
+                  <img src="img/bolt.png" />
+                  <figcaption class="caption">
+                    Approximate boltzmann relation between star mass and
+                    temperature
+                    <a
+                      target="_blank"
+                      href="https://physics.stackexchange.com/questions/6771/star-surface-temperature-vs-mass"
+                      >(src)</a
+                    >
+                  </figcaption>
+                </figure>
 
-								</div>
-								<div id="system-info">
-									<span id="system-name"></span>
-									<ul class="info-list">
-										<li id="planets-no"></li>
-										<li id="planets-list"></li>
-										<li id="hz"></li>
-										<li id="distance-sun"></li>
-										<li id="disc-method"></li>
-									</ul>
-								</div>
-							</div>
-							<div class="graph-container column"
-							     id="dist-chart"></div>
-						</div>
-						<div class="container has-text-centered note note-spec column is-10"
-						     style="color: grey;">
-							<b>Note: (<i class="icon ion-md-alert"></i>
-								This graph is hoverable and interactive, move your mouse in and see)</b>
-							This visualization provides a better way to know positions of
-							Exoplanet Systems with respect to solar system on a x-y plane with solar-system as origin.
-							Since this is an orthogonal projection, the radius of each node is directly proportional to absolute
-							value of z-coordinate value of the system(J2000 to cartesian coordinates are converted
-							by using simple trigonometric transformations, see source code for more info).
-							The Habitable zones are mostly accurate, if you notice any incorrect visualization it might be beacuse of missing data. The habitabe zone
-							is calculated using <a href="http://www.planetarybiology.com/calculating_habitable_zone.html"
-							   target="_blank">formula</a>.
-						</div>
-					</div>
-				</section>
-				<section class="section interesting-features">
-					<div class="container">
-						<div class="square"></div>
-						<h1 class="title title-text">Correlation of Features</h1>
-						<h2 class="subtitle">
-							&nbsp;&nbsp;Some features directly or indirectly depend on one
-							another
-						</h2>
-
-						<div class="graph-group columns">
-							<div class="graph-container column"
-							     id="corr-chart"></div>
-							<div class="column">
-								<div id="indicator"></div>
-								<svg id="scatter-chart"></svg>
-							</div>
-						</div>
-						<div class="container has-text-centered note note-spec column is-10"
-						     style="color: grey;">
-							<b>Note: (<i class="icon ion-md-alert"></i> This graph is hoverable and interactive, move your mouse in and see)</b> This is a Correlation Matrix graph, it provides a
-							visual relationship between different parameters in a heatmap.
-							Correlation is Positive when the values increase together, and
-							negative when one value decreases as the other increases.(only
-							some data has been used since provided dataset doesn't have much
-							parameters)
-						</div>
-						<div class="columns content text-body">
-							<div class="column is-2 side-text">
-								<figure class="image is-256x256">
-									<img src="img/kep.gif" />
-									<figcaption class="caption">
-										Kepler's Period law relationship
-										<a target="_blank"
-										   href="http://astronomyonline.org/Science/Orbits.asp">(src)</a>
-									</figcaption>
-								</figure>
-								<figure class="image is-256x256">
-									<img src="img/bolt.png" />
-									<figcaption class="caption">
-										Approximate boltzmann relation between star mass and
-										temperature
-										<a target="_blank"
-										   href="https://physics.stackexchange.com/questions/6771/star-surface-temperature-vs-mass">(src)</a>
-									</figcaption>
-								</figure>
-
-								Metallicity is denoted by Z, for sun
-								<span class="highlight">Z = 0.02</span> which means 2% mass is
-								comprised of elements other than helium and hydrogen
-							</div>
-							<div class="column is-10 main-text">
-								<b>
-									<h4>Some key takeaways:</h4>
-								</b>
-								<ul class="takeaways">
-									<li class="ta">
-										High correlation between Orbital Period and semimajor
-										axis(<span class="highlight">98.59%</span>) as expected. As
-										given by Kepler's Period laws,
-										<em>The square of the period of any planet is proportional to
-											the cube of the semimajor axis of its orbit.</em>
-										It also explains about the Moderate Correlation between
-										Orbital period and Mass of planet.
-									</li>
-									<li class="ta">
-										High correlation between Host star mass and surface
-										temperature(<span class="highlight">98.59%</span>). These
-										params can be related using a
-										<span class="highlight">Hertzsprung–Russell diagram</span>.
-										It plots each star on a graph plotting the star's brightness
-										against its temperature. By calibrating the relationship
-										between them, mass of the main sequence star can be
-										obtained. But bigger stars require more complex procedures
-										and other different parameters for calculating mass.
-									</li>
-									<li class="ta">
-										Moderate correlation between Host star mass and radius since
-										density plays an important role on the mass too,
-										irrespective of the radius of star.
-									</li>
-									<li class="ta">
-										Moderate Negative correlation between star metallicity and
-										temperature. Since higher metallicity means more free
-										electrons. The lesser the temperature more the elctron
-										mobility. Hence more metallicty.
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</section>
-				<section class="section largest-text">
-					<div class="container">
-						<div class="square"></div>
-						<h1 class="title title-text">The Biggest</h1>
-						<h2 class="subtitle">
-							&nbsp;&nbsp;<b>HD 100546 b</b> with radius 6 times Jupiter's
-							radius
-						</h2>
-						<div class="columns content text-body">
-							<div class="column is-2 side-text">
-								<figure class="image is-256x256">
-									<img src="img/larg.jpg" />
-									<figcaption class="caption">
-										Artist Impression of HD 100546 b
-										<a target="_blank"
-										   href="https://en.wikipedia.org/wiki/File:Artist%27s_impression_of_a_gas_giant_planet_forming_in_the_disc_around_the_young_star_HD_100546.jpg">(src)</a>
-									</figcaption>
-								</figure>
-								<br />
-								<br />
-								<br />
-								A <span class="highlight">protoplanet</span> is like an embryo
-								for planets. It is a stage when the planet forms within the
-								protoplanetary disc of the host star.
-							</div>
-							<div class="column is-10 main-text">
-								<p>
-									<b>How "big" is a planet?</b> There are two ways to come at
-									the question, depending on how the word "big" is defined. If
-									you think of the size of a planet in terms of mass, then there
-									is a specific but rather technical answer. Planets are defined
-									as bodies that do not generate their own energy from nuclear
-									fusion. Any planet more than about 13 times the mass of
-									Jupiter (about, 4000 Earth masses) generates enough heat and
-									pressure in its core to trigger limited fusion reactions of
-									deuterium, a heavy isotope of hydrogen. At that point, the
-									object is considered a brown dwarf instead of a planet.
-								</p>
-								<br />
-								<p>
-									Analyzing about
-									<span class="highlight">3585</span> exoplanets, it is found
-									that the planet HD 100546 b is the largest of all having
-									radius 6 times the radius of Jupiter(about
-									<span class="highlight">419466km</span>). As discussed above,
-									this planet's size puts it near the border between a huge
-									planet and a brown dwarf. Whilst being a huge planet it is
-									also has >15Mj mass. The whole HD 100546 b is still very
-									<span class="highlight">young protoplanet</span>. The host
-									star HD 100546 still has its protoplanetary disc bright and
-									full of fumes. So, it is a new entry to the confirmed
-									exoplanet family in 2013.
-								</p>
-							</div>
-						</div>
-					</div>
-				</section>
-				<div class="graph-container"
-				     id="size-chart">
-					<svg>
-						<defs>
-							<filter id="glow"
-							        filterUnits="objectBoundingBox"
-							        x="-50%"
-							        y="-50%"
-							        width="200%"
-							        height="200%">
-								<feGaussianBlur stdDeviation="1.5"
-								                result="coloredBlur" />
-								<feMerge>
-									<feMergeNode in="coloredBlur" />
-									<feMergeNode in="SourceGraphic" />
-								</feMerge>
-							</filter>
-							<filter id="sun-grad"
-							        filterUnits="objectBoundingBox"
-							        x="-50%"
-							        y="-50%"
-							        width="200%"
-							        height="200%">
-								<feGaussianBlur stdDeviation="6.5"
-								                result="coloredBlur" />
-								<feMerge>
-									<feMergeNode in="coloredBlur" />
-									<feMergeNode in="SourceGraphic" />
-								</feMerge>
-							</filter>
-						</defs>
-					</svg>
-				</div>
-				<div class="container has-text-centered note column is-10"
-				     style="color: grey;">
-					<b>Note: (<i class="icon ion-md-alert"></i> This graph is hoverable and interactive, move your mouse in and see)</b> The planet colors and sizes in this graph have been
-					saturated for better visibility. The sizes are linearly scaled to a
-					magnitude of [actual-planet-radius(jpt) * 3]
-				</div>
-				<section class="section smallest-text">
-					<div class="container">
-						<div class="square"></div>
-						<h1 class="title title-text">The Smallest</h1>
-						<h2 class="subtitle">
-							&nbsp;&nbsp;<b>Kepler-37 b</b> with radius 0.027 times Jupiter's
-							radius
-						</h2>
-						<div class="columns content text-body">
-							<div class="column is-2 side-text">
-								<figure class="image is-256x256">
-									<img src="img/smol.jpg" />
-									<figcaption class="caption">
-										Artist Impression of Kepler-37 b
-										<a target="_blank"
-										   href="https://en.wikipedia.org/wiki/File:Kepler-37b.jpg">(src)</a>
-									</figcaption>
-								</figure>
-								<br />
-								<figure class="image is-256x256">
-									<img src="img/lyra.jpg" />
-									<figcaption class="caption">
-										Constellation <span class="highlight">Lyra</span>
-										<a target="_blank"
-										   href="https://utahsadventurefamily.com/find-lyra-constellation/">(src)</a>
-									</figcaption>
-								</figure>
-							</div>
-							<div class="column is-10 main-text">
-								<p>
-									Kepler mission discovered a moon sized planet. Kepler-37b
-									orbiting <span class="highlight">Kepler-37 </span>system in
-									Constellation <span class="highlight">Lyra</span>. As of
-									February 2013 it is the smallest planet discovered around a
-									main-sequence star, with a radius slightly greater than that
-									of our Moon. But Moon has way higher density than Kepler-37 b.
-									The orbital period of this planet is very short as expected.
-									It completes a total revolution in just
-									<span class="highlight">13 days</span>. 7 times lesser than
-									Mercury with <span class="highlight">88 days</span> orbital
-									period.
-								</p>
-								<br />
-								<p>
-									You might think, a planet same size as moon would be have some
-									resemblance, But no. Kepler-37 b is highly unhabitable due to
-									its surface temperature scorching to
-									<span class="highlight">427°C</span>. If we happen to be there
-									death would occur within a minute. It has a radius of
-									<span class="highlight">
-										1950km(about 213km bigger than Moon)</span>. Due to its radius and high surface temperature. It is not
-									possible to have an atmosphere, suggesting that they don't
-									support liquid water. There are 2 more planets orbiting the
-									host star, having very high effective temperatures making them
-									<span class="highlight">inhospitable worlds</span>.
-								</p>
-							</div>
-						</div>
-					</div>
-				</section>
-				<section class="section side-note has-text-centered">
-					That's it for now, but there is still millions of questions to be answered and solved. The space is vast and we've explored only a speck of it.
-				</section>
-				<div class="is-divider"
-				     data-content="THE END"></div>
-				<section class="section quote has-text-centered">
-					<div class="container">
-						<blockquote>
-							The exploration of space will go ahead, whether we join in it or not, and it is one of the great adventures of all time, and no nation which expects to be the leader of other nations can expect to stay behind in the race for space.
-							<cite>John F. Kennedy</cite>
-						</blockquote>
-					</div>
-				</section>
-			</div>
-		</main>
-		<div class="is-divider"
-		     data-content="ABOUT"></div>
-		<footer class="footer">
-			<div class="has-text-centered is-size-5 social">
-				Made with <i class="icon ion-md-heart"></i> and <i class="icon ion-md-code"></i> by TK Vishal.
-				<br>
-				<a href="https://github.com/sanvishal"
-				   target="_blank">
-					<i class="icon ion-logo-github"></i>
-				</a>
-				<a href="https://twitter.com/Iamteeekay"
-				   target="_blank">
-					<i class="icon ion-logo-twitter"></i>
-				</a>
-				<a href="https://api.whatsapp.com/send?phone=918248795811"
-				   target="_blank">
-					<i class="icon ion-logo-whatsapp"></i>
-				</a>
-				<a href="https://www.instagram.com/tk_vishal/"
-				   target="_blank">
-					<i class="icon ion-logo-instagram"></i>
-				</a>
-				<a href="mailto:vishalsanthosh1999@gmail.com?subject=Hi&body=Hello there"><i class="icon ion-md-mail"></i></a>
-			</div>
-		</footer>
-		<script src="js/sketch.js"></script>
-		<script src="js/libs/d3.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-annotation/2.3.1/d3-annotation.min.js"></script>
-		<script src="js/planet-finder.js"></script>
-		<script src="js/size-chart.js"></script>
-		<script src="js/corr-chart.js"></script>
-		<script src="js/libs/autocomplete.js"></script>
-		<script src="js/dist-chart.js"></script>
-	</body>
-
+                Metallicity is denoted by Z, for sun
+                <span class="highlight">Z = 0.02</span> which means 2% mass is
+                comprised of elements other than helium and hydrogen
+              </div>
+              <div class="column is-10 main-text">
+                <b>
+                  <h4>Some key takeaways:</h4>
+                </b>
+                <ul class="takeaways">
+                  <li class="ta">
+                    High correlation between Orbital Period and semimajor
+                    axis(<span class="highlight">98.59%</span>) as expected. As
+                    given by Kepler's Period laws,
+                    <em
+                      >The square of the period of any planet is proportional to
+                      the cube of the semimajor axis of its orbit.</em
+                    >
+                    It also explains about the Moderate Correlation between
+                    Orbital period and Mass of planet.
+                  </li>
+                  <li class="ta">
+                    High correlation between Host star mass and surface
+                    temperature(<span class="highlight">98.59%</span>). These
+                    params can be related using a
+                    <span class="highlight">Hertzsprung–Russell diagram</span>.
+                    It plots each star on a graph plotting the star's brightness
+                    against its temperature. By calibrating the relationship
+                    between them, mass of the main sequence star can be
+                    obtained. But bigger stars require more complex procedures
+                    and other different parameters for calculating mass.
+                  </li>
+                  <li class="ta">
+                    Moderate correlation between Host star mass and radius since
+                    density plays an important role on the mass too,
+                    irrespective of the radius of star.
+                  </li>
+                  <li class="ta">
+                    Moderate Negative correlation between star metallicity and
+                    temperature. Since higher metallicity means more free
+                    electrons. The lesser the temperature more the elctron
+                    mobility. Hence more metallicty.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="section largest-text">
+          <div class="container">
+            <div class="square"></div>
+            <h1 class="title title-text">The Biggest</h1>
+            <h2 class="subtitle">
+              &nbsp;&nbsp;<b>HD 100546 b</b> with radius 6 times Jupiter's
+              radius
+            </h2>
+            <div class="columns content text-body">
+              <div class="column is-2 side-text">
+                <figure class="image is-256x256">
+                  <img src="img/larg.jpg" />
+                  <figcaption class="caption">
+                    Artist Impression of HD 100546 b
+                    <a
+                      target="_blank"
+                      href="https://en.wikipedia.org/wiki/File:Artist%27s_impression_of_a_gas_giant_planet_forming_in_the_disc_around_the_young_star_HD_100546.jpg"
+                      >(src)</a
+                    >
+                  </figcaption>
+                </figure>
+                <br />
+                <br />
+                <br />
+                A <span class="highlight">protoplanet</span> is like an embryo
+                for planets. It is a stage when the planet forms within the
+                protoplanetary disc of the host star.
+              </div>
+              <div class="column is-10 main-text">
+                <p>
+                  <b>How "big" is a planet?</b> There are two ways to come at
+                  the question, depending on how the word "big" is defined. If
+                  you think of the size of a planet in terms of mass, then there
+                  is a specific but rather technical answer. Planets are defined
+                  as bodies that do not generate their own energy from nuclear
+                  fusion. Any planet more than about 13 times the mass of
+                  Jupiter (about, 4000 Earth masses) generates enough heat and
+                  pressure in its core to trigger limited fusion reactions of
+                  deuterium, a heavy isotope of hydrogen. At that point, the
+                  object is considered a brown dwarf instead of a planet.
+                </p>
+                <br />
+                <p>
+                  Analyzing about
+                  <span class="highlight">3585</span> exoplanets, it is found
+                  that the planet HD 100546 b is the largest of all having
+                  radius 6 times the radius of Jupiter(about
+                  <span class="highlight">419466km</span>). As discussed above,
+                  this planet's size puts it near the border between a huge
+                  planet and a brown dwarf. Whilst being a huge planet it is
+                  also has >15Mj mass. The whole HD 100546 b is still very
+                  <span class="highlight">young protoplanet</span>. The host
+                  star HD 100546 still has its protoplanetary disc bright and
+                  full of fumes. So, it is a new entry to the confirmed
+                  exoplanet family in 2013.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div class="graph-container" id="size-chart">
+          <svg>
+            <defs>
+              <filter
+                id="glow"
+                filterUnits="objectBoundingBox"
+                x="-50%"
+                y="-50%"
+                width="200%"
+                height="200%"
+              >
+                <feGaussianBlur stdDeviation="1.5" result="coloredBlur" />
+                <feMerge>
+                  <feMergeNode in="coloredBlur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+              <filter
+                id="sun-grad"
+                filterUnits="objectBoundingBox"
+                x="-50%"
+                y="-50%"
+                width="200%"
+                height="200%"
+              >
+                <feGaussianBlur stdDeviation="6.5" result="coloredBlur" />
+                <feMerge>
+                  <feMergeNode in="coloredBlur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+          </svg>
+        </div>
+        <div
+          class="container has-text-centered note column is-10"
+          style="color: grey;"
+        >
+          <b
+            >Note: (<i class="icon ion-md-alert"></i> This graph is hoverable
+            and interactive, move your mouse in and see)</b
+          >
+          The planet colors and sizes in this graph have been saturated for
+          better visibility. The sizes are linearly scaled to a magnitude of
+          [actual-planet-radius(jpt) * 3]
+        </div>
+        <section class="section smallest-text">
+          <div class="container">
+            <div class="square"></div>
+            <h1 class="title title-text">The Smallest</h1>
+            <h2 class="subtitle">
+              &nbsp;&nbsp;<b>Kepler-37 b</b> with radius 0.027 times Jupiter's
+              radius
+            </h2>
+            <div class="columns content text-body">
+              <div class="column is-2 side-text">
+                <figure class="image is-256x256">
+                  <img src="img/smol.jpg" />
+                  <figcaption class="caption">
+                    Artist Impression of Kepler-37 b
+                    <a
+                      target="_blank"
+                      href="https://en.wikipedia.org/wiki/File:Kepler-37b.jpg"
+                      >(src)</a
+                    >
+                  </figcaption>
+                </figure>
+                <br />
+                <figure class="image is-256x256">
+                  <img src="img/lyra.jpg" />
+                  <figcaption class="caption">
+                    Constellation <span class="highlight">Lyra</span>
+                    <a
+                      target="_blank"
+                      href="https://utahsadventurefamily.com/find-lyra-constellation/"
+                      >(src)</a
+                    >
+                  </figcaption>
+                </figure>
+              </div>
+              <div class="column is-10 main-text">
+                <p>
+                  Kepler mission discovered a moon sized planet. Kepler-37b
+                  orbiting <span class="highlight">Kepler-37 </span>system in
+                  Constellation <span class="highlight">Lyra</span>. As of
+                  February 2013 it is the smallest planet discovered around a
+                  main-sequence star, with a radius slightly greater than that
+                  of our Moon. But Moon has way higher density than Kepler-37 b.
+                  The orbital period of this planet is very short as expected.
+                  It completes a total revolution in just
+                  <span class="highlight">13 days</span>. 7 times lesser than
+                  Mercury with <span class="highlight">88 days</span> orbital
+                  period.
+                </p>
+                <br />
+                <p>
+                  You might think, a planet same size as moon would be have some
+                  resemblance, But no. Kepler-37 b is highly unhabitable due to
+                  its surface temperature scorching to
+                  <span class="highlight">427°C</span>. If we happen to be there
+                  death would occur within a minute. It has a radius of
+                  <span class="highlight">
+                    1950km(about 213km bigger than Moon)</span
+                  >. Due to its radius and high surface temperature. It is not
+                  possible to have an atmosphere, suggesting that they don't
+                  support liquid water. There are 2 more planets orbiting the
+                  host star, having very high effective temperatures making them
+                  <span class="highlight">inhospitable worlds</span>.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="section side-note has-text-centered">
+          That's it for now, but there is still millions of questions to be
+          answered and solved. The space is vast and we've explored only a speck
+          of it.
+        </section>
+        <div class="is-divider" data-content="THE END"></div>
+        <section class="section quote has-text-centered">
+          <div class="container">
+            <blockquote>
+              The exploration of space will go ahead, whether we join in it or
+              not, and it is one of the great adventures of all time, and no
+              nation which expects to be the leader of other nations can expect
+              to stay behind in the race for space.
+              <cite>John F. Kennedy</cite>
+            </blockquote>
+          </div>
+        </section>
+      </div>
+    </main>
+    <div class="is-divider" data-content="ABOUT"></div>
+    <footer class="footer">
+      <div class="has-text-centered is-size-5 social">
+        Made with <i class="icon ion-md-heart"></i> and
+        <i class="icon ion-md-code"></i> by <a href="https://tkvishal.now.sh" target="_blank"><b><u>TK Vishal</u></b></a>.
+        <br />
+        <a href="https://github.com/sanvishal" target="_blank">
+          <i class="icon ion-logo-github"></i>
+        </a>
+        <a href="https://twitter.com/Iamteeekay" target="_blank">
+          <i class="icon ion-logo-twitter"></i>
+        </a>
+        <a
+          href="https://api.whatsapp.com/send?phone=918248795811"
+          target="_blank"
+        >
+          <i class="icon ion-logo-whatsapp"></i>
+        </a>
+        <a href="https://www.instagram.com/tk_vishal/" target="_blank">
+          <i class="icon ion-logo-instagram"></i>
+        </a>
+        <a
+          href="mailto:vishalsanthosh1999@gmail.com?subject=Hi&body=Hello there"
+          ><i class="icon ion-md-mail"></i
+        ></a>
+      </div>
+    </footer>
+    <script src="js/sketch.js"></script>
+    <script src="js/libs/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-annotation/2.3.1/d3-annotation.min.js"></script>
+    <script src="js/planet-finder.js"></script>
+    <script src="js/size-chart.js"></script>
+    <script src="js/corr-chart.js"></script>
+    <script src="js/libs/autocomplete.js"></script>
+    <script src="js/dist-chart.js"></script>
+  </body>
 </html>
