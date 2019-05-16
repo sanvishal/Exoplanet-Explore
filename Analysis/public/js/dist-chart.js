@@ -167,7 +167,7 @@ d3.csv("./cartesian-data/cart.csv", function(error, data) {
     .enter()
     .append("circle")
     .attr("fill", function(d) {
-		return colorDist(+d[0].DistFromSunly);
+      return colorDist(+d[0].DistFromSunly);
     })
     //.attr("style", "filter:url(#glow)") //causing performance issues
     .attr("name", function(d) {
@@ -180,7 +180,7 @@ d3.csv("./cartesian-data/cart.csv", function(error, data) {
       return 800 / 2 + +d[0].y * 10;
     })
     .attr("r", function(d) {
-        Math.abs(rScale(+d[0].DistFromSunly));
+      return Math.abs(rScale(+d[0].DistFromSunly));
     })
     .on("click", function(d) {
       var transform = getZoomedCoords(
