@@ -193,7 +193,7 @@ d3.csv("./cartesian-data/cart.csv", function(error, data) {
       );
       distSVG
         .transition()
-        .duration(10000)
+        .duration(1600)
         .call(zoom_handler.transform, transform);
       var attrName = d3.select(this).attr("name");
       drawSystem(attrName, SystemData[attrName]);
